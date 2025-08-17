@@ -1,4 +1,4 @@
-// Generated from d:/go/nexuscore/nbql/Nexus.g4 by ANTLR 4.13.1
+// Generated from d:/go/nexuscore/golang/nbql/Nexus.g4 by ANTLR 4.13.1
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
@@ -145,14 +145,6 @@ public class NexusParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_statement; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterStatement(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitStatement(this);
-		}
 	}
 
 	public final StatementContext statement() throws RecognitionException {
@@ -242,14 +234,6 @@ public class NexusParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_snapshotStatement; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterSnapshotStatement(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitSnapshotStatement(this);
-		}
 	}
 
 	public final SnapshotStatementContext snapshotStatement() throws RecognitionException {
@@ -284,14 +268,6 @@ public class NexusParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_restoreStatement; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterRestoreStatement(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitRestoreStatement(this);
-		}
 	}
 
 	public final RestoreStatementContext restoreStatement() throws RecognitionException {
@@ -354,14 +330,6 @@ public class NexusParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_pushStatement; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterPushStatement(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitPushStatement(this);
-		}
 	}
 
 	public final PushStatementContext pushStatement() throws RecognitionException {
@@ -436,14 +404,6 @@ public class NexusParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_queryStatement; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterQueryStatement(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitQueryStatement(this);
-		}
 	}
 
 	public final QueryStatementContext queryStatement() throws RecognitionException {
@@ -510,14 +470,6 @@ public class NexusParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_time_range; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterTime_range(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitTime_range(this);
-		}
 	}
 
 	public final Time_rangeContext time_range() throws RecognitionException {
@@ -592,14 +544,6 @@ public class NexusParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_query_clauses; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterQuery_clauses(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitQuery_clauses(this);
-		}
 	}
 
 	public final Query_clausesContext query_clauses() throws RecognitionException {
@@ -804,14 +748,6 @@ public class NexusParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_removeStatement; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterRemoveStatement(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitRemoveStatement(this);
-		}
 	}
 
 	public final RemoveStatementContext removeStatement() throws RecognitionException {
@@ -905,14 +841,6 @@ public class NexusParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_showStatement; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterShowStatement(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitShowStatement(this);
-		}
 	}
 
 	public final ShowStatementContext showStatement() throws RecognitionException {
@@ -997,14 +925,6 @@ public class NexusParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_flushStatement; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterFlushStatement(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitFlushStatement(this);
-		}
 	}
 
 	public final FlushStatementContext flushStatement() throws RecognitionException {
@@ -1059,14 +979,6 @@ public class NexusParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_aggregation_spec_list; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterAggregation_spec_list(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitAggregation_spec_list(this);
-		}
 	}
 
 	public final Aggregation_spec_listContext aggregation_spec_list() throws RecognitionException {
@@ -1118,14 +1030,6 @@ public class NexusParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_aggregation_spec; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterAggregation_spec(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitAggregation_spec(this);
-		}
 	}
 
 	public final Aggregation_specContext aggregation_spec() throws RecognitionException {
@@ -1190,14 +1094,6 @@ public class NexusParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_series_specifier; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterSeries_specifier(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitSeries_specifier(this);
-		}
 	}
 
 	public final Series_specifierContext series_specifier() throws RecognitionException {
@@ -1244,14 +1140,6 @@ public class NexusParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_metric_name; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterMetric_name(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitMetric_name(this);
-		}
 	}
 
 	public final Metric_nameContext metric_name() throws RecognitionException {
@@ -1296,14 +1184,6 @@ public class NexusParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_tag_list; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterTag_list(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitTag_list(this);
-		}
 	}
 
 	public final Tag_listContext tag_list() throws RecognitionException {
@@ -1359,14 +1239,6 @@ public class NexusParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_tag_assignment; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterTag_assignment(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitTag_assignment(this);
-		}
 	}
 
 	public final Tag_assignmentContext tag_assignment() throws RecognitionException {
@@ -1410,14 +1282,6 @@ public class NexusParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_tag_value; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterTag_value(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitTag_value(this);
-		}
 	}
 
 	public final Tag_valueContext tag_value() throws RecognitionException {
@@ -1453,14 +1317,6 @@ public class NexusParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_field_list; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterField_list(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitField_list(this);
-		}
 	}
 
 	public final Field_listContext field_list() throws RecognitionException {
@@ -1515,14 +1371,6 @@ public class NexusParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_field_assignment; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterField_assignment(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitField_assignment(this);
-		}
 	}
 
 	public final Field_assignmentContext field_assignment() throws RecognitionException {
@@ -1566,41 +1414,17 @@ public class NexusParser extends Parser {
 	public static class TimestampNowContext extends TimestampContext {
 		public TerminalNode K_NOW() { return getToken(NexusParser.K_NOW, 0); }
 		public TimestampNowContext(TimestampContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterTimestampNow(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitTimestampNow(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class TimestampLiteralContext extends TimestampContext {
 		public TerminalNode NUMBER() { return getToken(NexusParser.NUMBER, 0); }
 		public TimestampLiteralContext(TimestampContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterTimestampLiteral(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitTimestampLiteral(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class TimestampDateTimeContext extends TimestampContext {
 		public TerminalNode K_DT() { return getToken(NexusParser.K_DT, 0); }
 		public TerminalNode STRING_LITERAL() { return getToken(NexusParser.STRING_LITERAL, 0); }
 		public TimestampDateTimeContext(TimestampContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterTimestampDateTime(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitTimestampDateTime(this);
-		}
 	}
 	@SuppressWarnings("CheckReturnValue")
 	public static class TimestampNowRelativeContext extends TimestampContext {
@@ -1609,14 +1433,6 @@ public class NexusParser extends Parser {
 		public TerminalNode PLUS() { return getToken(NexusParser.PLUS, 0); }
 		public TerminalNode MINUS() { return getToken(NexusParser.MINUS, 0); }
 		public TimestampNowRelativeContext(TimestampContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterTimestampNowRelative(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitTimestampNowRelative(this);
-		}
 	}
 
 	public final TimestampContext timestamp() throws RecognitionException {
@@ -1705,14 +1521,6 @@ public class NexusParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_duration; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterDuration(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitDuration(this);
-		}
 	}
 
 	public final DurationContext duration() throws RecognitionException {
@@ -1743,14 +1551,6 @@ public class NexusParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_value; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterValue(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitValue(this);
-		}
 	}
 
 	public final ValueContext value() throws RecognitionException {
@@ -1785,14 +1585,6 @@ public class NexusParser extends Parser {
 			super(parent, invokingState);
 		}
 		@Override public int getRuleIndex() { return RULE_literal_value; }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).enterLiteral_value(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof NexusListener ) ((NexusListener)listener).exitLiteral_value(this);
-		}
 	}
 
 	public final Literal_valueContext literal_value() throws RecognitionException {
