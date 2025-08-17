@@ -1,0 +1,1 @@
+protoc --go_out=./grpc/tsdb --go_opt=paths=source_relative --go_opt=Mtsdb.proto=github.com/iDanielLaw/nexuscore/grpc/tsdb --go-grpc_out=./grpc/tsdb --go-grpc_opt=paths=source_relative --go-grpc_opt=Mtsdb.proto=github.com/nexuscore/grpc/tsdb ./tsdb.proto
