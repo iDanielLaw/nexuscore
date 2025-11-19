@@ -331,27 +331,51 @@ func TestParser(t *testing.T) {
 
 	// --- CONFIG Statement Tests ---
 	t.Run("CONFIG", func(t *testing.T) {
+		// default when WITH is absent: retention-period should be "disabled"
 		run(t, "config without options",
 			`CONFIG METRICS cpu;`,
 			false,
 			&ConfigStatement{
-				Metric:  "cpu",
-				Options: nil,
+				Metric: "cpu",
+				Options: map[string]interface{}{
+					"retention-period": "disabled",
+				},
 			},
 		)
 
+		// with retention-period as duration literal
+		// 30 days in nanoseconds = 30*24*3600*1e9 = 2592000000000000
 		run(t, "config with options",
-			`CONFIG METRICS "my.metric" WITH (retention-period="30d", shards=3, compression="lz4", enabled=true);`,
+			`CONFIG METRICS "my.metric" WITH (retention-period=30d, shards=3, compression="lz4", enabled=true);`,
 			false,
 			&ConfigStatement{
 				Metric: "my.metric",
 				Options: map[string]interface{}{
-					"retention-period": "30d",
+					"retention-period": int64(2592000000000000),
 					"shards":           int64(3),
 					"compression":      "lz4",
 					"enabled":          true,
 				},
 			},
+		)
+
+		// with mo (month) unit: 1mo -> 30 days
+		run(t, "config with mo unit",
+			`CONFIG METRICS "my.metric" WITH (retention-period=1mo);`,
+			false,
+			&ConfigStatement{
+				Metric: "my.metric",
+				Options: map[string]interface{}{
+					"retention-period": int64(2592000000000000),
+				},
+			},
+		)
+
+		// invalid retention format should produce an error
+		run(t, "config invalid retention",
+			`CONFIG METRICS "bad" WITH (retention-period=30x);`,
+			true,
+			nil,
 		)
 	})
 

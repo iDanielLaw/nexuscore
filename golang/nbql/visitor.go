@@ -2,7 +2,6 @@ package nbql
 
 import (
 	"fmt"
-	"regexp"
 	"strconv"
 	"strings"
 	"time"
@@ -120,6 +119,10 @@ func (v *ASTBuilder) VisitCreateStatement(ctx *parser.CreateStatementContext) in
 			return nil
 		}
 		options = optResult
+	} else {
+		// No WITH clause: still provide options map with default retention-period disabled
+		options = make(map[string]interface{})
+		options["retention-period"] = "disabled"
 	}
 
 	return &ConfigStatement{
@@ -388,27 +391,32 @@ func (v *ASTBuilder) VisitOption_list(ctx *parser.Option_listContext) interface{
 		val := v.visitOptionValue(assignCtx.Option_value())
 		opts[key] = val
 	}
-	// Ensure retention-period exists; default to "disabled" if not provided.
+	// If retention-period wasn't provided, set default disabled.
 	if _, ok := opts["retention-period"]; !ok {
 		opts["retention-period"] = "disabled"
-	} else {
-		// Validate retention-period if present
-		if rp, ok := opts["retention-period"].(string); ok {
-			// allowed units: m h d w mo y
-			// normalize to lower-case and remove surrounding whitespace
-			rp = strings.ToLower(strings.TrimSpace(rp))
-			// duration format: digits + unit
-			matched, _ := regexp.MatchString(`^[0-9]+(m|h|d|w|mo|y)$`, rp)
-			if !matched {
-				v.addError(fmt.Errorf("invalid retention-period format: %s", rp))
-				return nil
-			}
-			// store normalized value
-			opts["retention-period"] = rp
-		} else {
-			v.addError(fmt.Errorf("retention-period must be a duration literal"))
+		return opts
+	}
+
+	// If retention-period is provided, normalize/convert it to int64 nanoseconds.
+	rpVal := opts["retention-period"]
+	switch val := rpVal.(type) {
+	case int64:
+		// already numeric (nanoseconds) produced from a DURATION_LITERAL
+		opts["retention-period"] = val
+	case string:
+		// Could be provided as a STRING_LITERAL, e.g. "30d"; parse and convert
+		dur, err := parseDuration(strings.ToLower(strings.TrimSpace(val)))
+		if err != nil {
+			v.addError(fmt.Errorf("invalid retention-period format: %s", val))
 			return nil
 		}
+		opts["retention-period"] = dur.Nanoseconds()
+	case float64:
+		// shouldn't happen for DURATION_LITERAL, but handle defensively
+		opts["retention-period"] = int64(val)
+	default:
+		v.addError(fmt.Errorf("retention-period must be a duration literal"))
+		return nil
 	}
 
 	return opts
@@ -420,7 +428,14 @@ func (v *ASTBuilder) visitOptionValue(ctx parser.IOption_valueContext) interface
 		return nil
 	}
 	if ctx.DURATION_LITERAL() != nil {
-		return ctx.DURATION_LITERAL().GetText()
+		// Convert duration literal into numeric nanoseconds for the AST.
+		text := ctx.DURATION_LITERAL().GetText()
+		d, err := parseDuration(text)
+		if err != nil {
+			v.addError(fmt.Errorf("invalid duration in option value: %s", text))
+			return nil
+		}
+		return int64(d.Nanoseconds())
 	}
 	if ctx.NUMBER() != nil {
 		text := ctx.NUMBER().GetText()
@@ -529,21 +544,21 @@ func parseDuration(s string) (time.Duration, error) {
 		return d, nil
 	}
 
-	// If that fails, it might be one of our custom units (d, w, y).
+	// If that fails, it might be one of our custom units (d, w, y, mo).
 	if len(s) < 2 {
-		// If it's too short for our custom units, return the original error.
 		return 0, originalErr
 	}
 
-	unit := s[len(s)-1]
-	// Only attempt custom parsing for our specific units.
-	if unit != 'd' && unit != 'w' && unit != 'y' {
-		// For any other error (e.g., "5x", "123"), return the original error from time.ParseDuration.
+	// Extract numeric prefix and unit suffix. Find the position where letters start.
+	i := len(s) - 1
+	for i >= 0 && (s[i] < '0' || s[i] > '9') {
+		i--
+	}
+	if i < 0 || i == len(s)-1 {
 		return 0, originalErr
 	}
-
-	// The format is assumed to be [0-9]+[dwy].
-	valueStr := s[:len(s)-1]
+	valueStr := s[:i+1]
+	unitStr := s[i+1:]
 
 	value, err := strconv.ParseInt(valueStr, 10, 64)
 	if err != nil {
@@ -552,17 +567,24 @@ func parseDuration(s string) (time.Duration, error) {
 	}
 
 	var customDuration time.Duration
-	switch unit {
-	case 'd':
+	matched := true
+	switch unitStr {
+	case "d":
 		customDuration = time.Hour * 24 * time.Duration(value)
-	case 'w':
+	case "w":
 		customDuration = time.Hour * 24 * 7 * time.Duration(value)
-	case 'y':
-		// This is an approximation. A year is ~365.25 days.
-		// For simplicity and consistency, we'll use 365 days.
+	case "y":
+		// Use 365 days as approximation for a year.
 		customDuration = time.Hour * 24 * 365 * time.Duration(value)
+	case "mo":
+		// Approximate a month as 30 days.
+		customDuration = time.Hour * 24 * 30 * time.Duration(value)
+	default:
+		matched = false
 	}
-
+	if !matched {
+		return 0, originalErr
+	}
 	return customDuration, nil
 }
 
