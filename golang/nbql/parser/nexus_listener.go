@@ -19,6 +19,9 @@ type NexusListener interface {
 	// EnterPushStatement is called when entering the pushStatement production.
 	EnterPushStatement(c *PushStatementContext)
 
+	// EnterCreateStatement is called when entering the createStatement production.
+	EnterCreateStatement(c *CreateStatementContext)
+
 	// EnterQueryStatement is called when entering the queryStatement production.
 	EnterQueryStatement(c *QueryStatementContext)
 
@@ -85,6 +88,15 @@ type NexusListener interface {
 	// EnterLiteral_value is called when entering the literal_value production.
 	EnterLiteral_value(c *Literal_valueContext)
 
+	// EnterOption_list is called when entering the option_list production.
+	EnterOption_list(c *Option_listContext)
+
+	// EnterOption_assignment is called when entering the option_assignment production.
+	EnterOption_assignment(c *Option_assignmentContext)
+
+	// EnterOption_value is called when entering the option_value production.
+	EnterOption_value(c *Option_valueContext)
+
 	// ExitStatement is called when exiting the statement production.
 	ExitStatement(c *StatementContext)
 
@@ -96,6 +108,9 @@ type NexusListener interface {
 
 	// ExitPushStatement is called when exiting the pushStatement production.
 	ExitPushStatement(c *PushStatementContext)
+
+	// ExitCreateStatement is called when exiting the createStatement production.
+	ExitCreateStatement(c *CreateStatementContext)
 
 	// ExitQueryStatement is called when exiting the queryStatement production.
 	ExitQueryStatement(c *QueryStatementContext)
@@ -162,4 +177,13 @@ type NexusListener interface {
 
 	// ExitLiteral_value is called when exiting the literal_value production.
 	ExitLiteral_value(c *Literal_valueContext)
+
+	// ExitOption_list is called when exiting the option_list production.
+	ExitOption_list(c *Option_listContext)
+
+	// ExitOption_assignment is called when exiting the option_assignment production.
+	ExitOption_assignment(c *Option_assignmentContext)
+
+	// ExitOption_value is called when exiting the option_value production.
+	ExitOption_value(c *Option_valueContext)
 }

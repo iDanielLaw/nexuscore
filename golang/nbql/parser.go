@@ -1,9 +1,8 @@
+//go:generate java -jar /data/antlr-4.13.2-complete.jar -Dlanguage=Go -o ./parser -visitor -package parser ./Nexus.g4
 package nbql
 
 import (
 	"fmt"
-
-	//go:generate java -jar /data/antlr-4.13.2-complete.jar -Dlanguage=Go -o ./parser -visitor -package parser ./Nexus.g4
 
 	"github.com/INLOpen/nexuscore/nbql/parser"
 	"github.com/INLOpen/nexuscore/utils/clock"

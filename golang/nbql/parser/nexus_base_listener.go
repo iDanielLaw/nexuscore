@@ -44,6 +44,12 @@ func (s *BaseNexusListener) EnterPushStatement(ctx *PushStatementContext) {}
 // ExitPushStatement is called when production pushStatement is exited.
 func (s *BaseNexusListener) ExitPushStatement(ctx *PushStatementContext) {}
 
+// EnterCreateStatement is called when production createStatement is entered.
+func (s *BaseNexusListener) EnterCreateStatement(ctx *CreateStatementContext) {}
+
+// ExitCreateStatement is called when production createStatement is exited.
+func (s *BaseNexusListener) ExitCreateStatement(ctx *CreateStatementContext) {}
+
 // EnterQueryStatement is called when production queryStatement is entered.
 func (s *BaseNexusListener) EnterQueryStatement(ctx *QueryStatementContext) {}
 
@@ -175,3 +181,21 @@ func (s *BaseNexusListener) EnterLiteral_value(ctx *Literal_valueContext) {}
 
 // ExitLiteral_value is called when production literal_value is exited.
 func (s *BaseNexusListener) ExitLiteral_value(ctx *Literal_valueContext) {}
+
+// EnterOption_list is called when production option_list is entered.
+func (s *BaseNexusListener) EnterOption_list(ctx *Option_listContext) {}
+
+// ExitOption_list is called when production option_list is exited.
+func (s *BaseNexusListener) ExitOption_list(ctx *Option_listContext) {}
+
+// EnterOption_assignment is called when production option_assignment is entered.
+func (s *BaseNexusListener) EnterOption_assignment(ctx *Option_assignmentContext) {}
+
+// ExitOption_assignment is called when production option_assignment is exited.
+func (s *BaseNexusListener) ExitOption_assignment(ctx *Option_assignmentContext) {}
+
+// EnterOption_value is called when production option_value is entered.
+func (s *BaseNexusListener) EnterOption_value(ctx *Option_valueContext) {}
+
+// ExitOption_value is called when production option_value is exited.
+func (s *BaseNexusListener) ExitOption_value(ctx *Option_valueContext) {}

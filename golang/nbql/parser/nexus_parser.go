@@ -35,143 +35,158 @@ func nexusParserInit() {
 		"", "';'", "'('", "')'", "'='", "','", "'*'", "", "", "", "", "", "",
 		"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
 		"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
-		"", "", "'+'", "'-'",
+		"", "", "", "", "'+'", "'-'",
 	}
 	staticData.SymbolicNames = []string{
 		"", "", "", "", "", "", "", "K_OVERWRITE", "K_RESTORE", "K_SNAPSHOT",
-		"K_PUSH", "K_QUERY", "K_REMOVE", "K_SHOW", "K_SET", "K_FROM", "K_TO",
-		"K_AT", "K_TAGGED", "K_AGGREGATE", "K_BY", "K_ON", "K_LIMIT", "K_SERIES",
-		"K_AFTER", "K_EMPTY", "K_WINDOWS", "K_METRICS", "K_TAGS", "K_TAG", "K_KEYS",
-		"K_VALUES", "K_WITH", "K_KEY", "K_TIME", "K_NOW", "K_TRUE", "K_FALSE",
-		"K_NULL", "K_FLUSH", "K_MEMTABLE", "K_DISK", "K_ALL", "K_ORDER", "K_ASC",
-		"K_DESC", "K_AS", "K_DT", "K_RELATIVE", "PLUS", "MINUS", "DURATION_LITERAL",
-		"NUMBER", "IDENTIFIER", "STRING_LITERAL", "WS", "LINE_COMMENT",
+		"K_CREATE", "K_CONFIG", "K_PUSH", "K_QUERY", "K_REMOVE", "K_SHOW", "K_SET",
+		"K_FROM", "K_TO", "K_AT", "K_TAGGED", "K_AGGREGATE", "K_BY", "K_ON",
+		"K_LIMIT", "K_SERIES", "K_AFTER", "K_EMPTY", "K_WINDOWS", "K_METRICS",
+		"K_TAGS", "K_TAG", "K_KEYS", "K_VALUES", "K_WITH", "K_KEY", "K_TIME",
+		"K_NOW", "K_TRUE", "K_FALSE", "K_NULL", "K_FLUSH", "K_MEMTABLE", "K_DISK",
+		"K_ALL", "K_ORDER", "K_ASC", "K_DESC", "K_AS", "K_DT", "K_RELATIVE",
+		"PLUS", "MINUS", "DURATION_LITERAL", "NUMBER", "IDENTIFIER", "STRING_LITERAL",
+		"WS", "LINE_COMMENT",
 	}
 	staticData.RuleNames = []string{
 		"statement", "snapshotStatement", "restoreStatement", "pushStatement",
-		"queryStatement", "time_range", "query_clauses", "removeStatement",
-		"showStatement", "flushStatement", "aggregation_spec_list", "aggregation_spec",
-		"series_specifier", "metric_name", "tag_list", "tag_assignment", "tag_value",
-		"field_list", "field_assignment", "timestamp", "duration", "value",
-		"literal_value",
+		"createStatement", "queryStatement", "time_range", "query_clauses",
+		"removeStatement", "showStatement", "flushStatement", "aggregation_spec_list",
+		"aggregation_spec", "series_specifier", "metric_name", "tag_list", "tag_assignment",
+		"tag_value", "field_list", "field_assignment", "timestamp", "duration",
+		"value", "literal_value", "option_list", "option_assignment", "option_value",
 	}
 	staticData.PredictionContextCache = antlr.NewPredictionContextCache()
 	staticData.serializedATN = []int32{
-		4, 1, 56, 265, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
+		4, 1, 58, 298, 2, 0, 7, 0, 2, 1, 7, 1, 2, 2, 7, 2, 2, 3, 7, 3, 2, 4, 7,
 		4, 2, 5, 7, 5, 2, 6, 7, 6, 2, 7, 7, 7, 2, 8, 7, 8, 2, 9, 7, 9, 2, 10, 7,
 		10, 2, 11, 7, 11, 2, 12, 7, 12, 2, 13, 7, 13, 2, 14, 7, 14, 2, 15, 7, 15,
 		2, 16, 7, 16, 2, 17, 7, 17, 2, 18, 7, 18, 2, 19, 7, 19, 2, 20, 7, 20, 2,
-		21, 7, 21, 2, 22, 7, 22, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3, 0,
-		54, 8, 0, 1, 0, 3, 0, 57, 8, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 2, 1, 2, 1,
-		2, 1, 2, 1, 2, 3, 2, 68, 8, 2, 1, 3, 1, 3, 1, 3, 1, 3, 3, 3, 74, 8, 3,
-		1, 3, 1, 3, 3, 3, 78, 8, 3, 1, 3, 1, 3, 1, 3, 1, 4, 1, 4, 1, 4, 1, 4, 1,
-		4, 3, 4, 88, 8, 4, 1, 4, 3, 4, 91, 8, 4, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5,
-		1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 3, 5, 103, 8, 5, 1, 6, 1, 6, 1, 6, 3, 6,
-		108, 8, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 3, 6, 116, 8, 6, 1, 6, 1,
-		6, 3, 6, 120, 8, 6, 1, 6, 1, 6, 3, 6, 124, 8, 6, 1, 6, 1, 6, 3, 6, 128,
-		8, 6, 1, 6, 1, 6, 3, 6, 132, 8, 6, 1, 6, 1, 6, 3, 6, 136, 8, 6, 1, 6, 1,
-		6, 1, 6, 1, 6, 1, 6, 3, 6, 143, 8, 6, 1, 6, 1, 6, 3, 6, 147, 8, 6, 1, 7,
-		1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7,
-		3, 7, 162, 8, 7, 3, 7, 164, 8, 7, 1, 8, 1, 8, 1, 8, 1, 8, 1, 8, 1, 8, 1,
-		8, 1, 8, 1, 8, 1, 8, 3, 8, 176, 8, 8, 1, 8, 1, 8, 1, 8, 1, 8, 3, 8, 182,
-		8, 8, 1, 9, 1, 9, 3, 9, 186, 8, 9, 1, 10, 1, 10, 1, 10, 5, 10, 191, 8,
-		10, 10, 10, 12, 10, 194, 9, 10, 1, 11, 1, 11, 1, 11, 1, 11, 1, 11, 1, 11,
-		3, 11, 202, 8, 11, 1, 12, 1, 12, 1, 12, 1, 12, 3, 12, 208, 8, 12, 1, 13,
-		1, 13, 1, 14, 1, 14, 1, 14, 1, 14, 5, 14, 216, 8, 14, 10, 14, 12, 14, 219,
-		9, 14, 1, 14, 1, 14, 1, 15, 1, 15, 1, 15, 1, 15, 1, 16, 1, 16, 1, 17, 1,
-		17, 1, 17, 1, 17, 5, 17, 233, 8, 17, 10, 17, 12, 17, 236, 9, 17, 1, 17,
-		1, 17, 1, 18, 1, 18, 1, 18, 1, 18, 1, 19, 1, 19, 1, 19, 1, 19, 1, 19, 1,
-		19, 1, 19, 1, 19, 1, 19, 1, 19, 1, 19, 1, 19, 1, 19, 3, 19, 257, 8, 19,
-		1, 20, 1, 20, 1, 21, 1, 21, 1, 22, 1, 22, 1, 22, 0, 0, 23, 0, 2, 4, 6,
-		8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42,
-		44, 0, 6, 1, 0, 44, 45, 1, 0, 40, 42, 2, 0, 6, 6, 53, 53, 1, 0, 53, 54,
-		1, 0, 49, 50, 3, 0, 36, 38, 52, 52, 54, 54, 279, 0, 53, 1, 0, 0, 0, 2,
-		60, 1, 0, 0, 0, 4, 62, 1, 0, 0, 0, 6, 69, 1, 0, 0, 0, 8, 82, 1, 0, 0, 0,
-		10, 102, 1, 0, 0, 0, 12, 146, 1, 0, 0, 0, 14, 148, 1, 0, 0, 0, 16, 165,
-		1, 0, 0, 0, 18, 183, 1, 0, 0, 0, 20, 187, 1, 0, 0, 0, 22, 195, 1, 0, 0,
-		0, 24, 203, 1, 0, 0, 0, 26, 209, 1, 0, 0, 0, 28, 211, 1, 0, 0, 0, 30, 222,
-		1, 0, 0, 0, 32, 226, 1, 0, 0, 0, 34, 228, 1, 0, 0, 0, 36, 239, 1, 0, 0,
-		0, 38, 256, 1, 0, 0, 0, 40, 258, 1, 0, 0, 0, 42, 260, 1, 0, 0, 0, 44, 262,
-		1, 0, 0, 0, 46, 54, 3, 6, 3, 0, 47, 54, 3, 8, 4, 0, 48, 54, 3, 14, 7, 0,
-		49, 54, 3, 16, 8, 0, 50, 54, 3, 18, 9, 0, 51, 54, 3, 2, 1, 0, 52, 54, 3,
-		4, 2, 0, 53, 46, 1, 0, 0, 0, 53, 47, 1, 0, 0, 0, 53, 48, 1, 0, 0, 0, 53,
-		49, 1, 0, 0, 0, 53, 50, 1, 0, 0, 0, 53, 51, 1, 0, 0, 0, 53, 52, 1, 0, 0,
-		0, 54, 56, 1, 0, 0, 0, 55, 57, 5, 1, 0, 0, 56, 55, 1, 0, 0, 0, 56, 57,
-		1, 0, 0, 0, 57, 58, 1, 0, 0, 0, 58, 59, 5, 0, 0, 1, 59, 1, 1, 0, 0, 0,
-		60, 61, 5, 9, 0, 0, 61, 3, 1, 0, 0, 0, 62, 63, 5, 8, 0, 0, 63, 64, 5, 15,
-		0, 0, 64, 67, 5, 54, 0, 0, 65, 66, 5, 32, 0, 0, 66, 68, 5, 7, 0, 0, 67,
-		65, 1, 0, 0, 0, 67, 68, 1, 0, 0, 0, 68, 5, 1, 0, 0, 0, 69, 70, 5, 10, 0,
-		0, 70, 73, 3, 26, 13, 0, 71, 72, 5, 34, 0, 0, 72, 74, 3, 38, 19, 0, 73,
-		71, 1, 0, 0, 0, 73, 74, 1, 0, 0, 0, 74, 77, 1, 0, 0, 0, 75, 76, 5, 18,
-		0, 0, 76, 78, 3, 28, 14, 0, 77, 75, 1, 0, 0, 0, 77, 78, 1, 0, 0, 0, 78,
-		79, 1, 0, 0, 0, 79, 80, 5, 14, 0, 0, 80, 81, 3, 34, 17, 0, 81, 7, 1, 0,
-		0, 0, 82, 83, 5, 11, 0, 0, 83, 84, 3, 26, 13, 0, 84, 87, 3, 10, 5, 0, 85,
-		86, 5, 18, 0, 0, 86, 88, 3, 28, 14, 0, 87, 85, 1, 0, 0, 0, 87, 88, 1, 0,
-		0, 0, 88, 90, 1, 0, 0, 0, 89, 91, 3, 12, 6, 0, 90, 89, 1, 0, 0, 0, 90,
-		91, 1, 0, 0, 0, 91, 9, 1, 0, 0, 0, 92, 93, 5, 15, 0, 0, 93, 94, 3, 38,
-		19, 0, 94, 95, 5, 16, 0, 0, 95, 96, 3, 38, 19, 0, 96, 103, 1, 0, 0, 0,
-		97, 98, 5, 15, 0, 0, 98, 99, 5, 48, 0, 0, 99, 100, 5, 2, 0, 0, 100, 101,
-		5, 51, 0, 0, 101, 103, 5, 3, 0, 0, 102, 92, 1, 0, 0, 0, 102, 97, 1, 0,
-		0, 0, 103, 11, 1, 0, 0, 0, 104, 107, 5, 19, 0, 0, 105, 106, 5, 20, 0, 0,
-		106, 108, 3, 40, 20, 0, 107, 105, 1, 0, 0, 0, 107, 108, 1, 0, 0, 0, 108,
-		109, 1, 0, 0, 0, 109, 110, 5, 2, 0, 0, 110, 111, 3, 20, 10, 0, 111, 115,
-		5, 3, 0, 0, 112, 113, 5, 32, 0, 0, 113, 114, 5, 25, 0, 0, 114, 116, 5,
-		26, 0, 0, 115, 112, 1, 0, 0, 0, 115, 116, 1, 0, 0, 0, 116, 119, 1, 0, 0,
-		0, 117, 118, 5, 22, 0, 0, 118, 120, 5, 52, 0, 0, 119, 117, 1, 0, 0, 0,
-		119, 120, 1, 0, 0, 0, 120, 123, 1, 0, 0, 0, 121, 122, 5, 24, 0, 0, 122,
-		124, 5, 54, 0, 0, 123, 121, 1, 0, 0, 0, 123, 124, 1, 0, 0, 0, 124, 147,
-		1, 0, 0, 0, 125, 127, 5, 43, 0, 0, 126, 128, 7, 0, 0, 0, 127, 126, 1, 0,
-		0, 0, 127, 128, 1, 0, 0, 0, 128, 131, 1, 0, 0, 0, 129, 130, 5, 22, 0, 0,
-		130, 132, 5, 52, 0, 0, 131, 129, 1, 0, 0, 0, 131, 132, 1, 0, 0, 0, 132,
-		135, 1, 0, 0, 0, 133, 134, 5, 24, 0, 0, 134, 136, 5, 54, 0, 0, 135, 133,
-		1, 0, 0, 0, 135, 136, 1, 0, 0, 0, 136, 147, 1, 0, 0, 0, 137, 138, 5, 22,
-		0, 0, 138, 139, 5, 52, 0, 0, 139, 142, 1, 0, 0, 0, 140, 141, 5, 24, 0,
-		0, 141, 143, 5, 54, 0, 0, 142, 140, 1, 0, 0, 0, 142, 143, 1, 0, 0, 0, 143,
-		147, 1, 0, 0, 0, 144, 145, 5, 24, 0, 0, 145, 147, 5, 54, 0, 0, 146, 104,
-		1, 0, 0, 0, 146, 125, 1, 0, 0, 0, 146, 137, 1, 0, 0, 0, 146, 144, 1, 0,
-		0, 0, 147, 13, 1, 0, 0, 0, 148, 163, 5, 12, 0, 0, 149, 164, 3, 24, 12,
-		0, 150, 151, 5, 15, 0, 0, 151, 152, 3, 26, 13, 0, 152, 153, 5, 18, 0, 0,
-		153, 161, 3, 28, 14, 0, 154, 155, 5, 17, 0, 0, 155, 162, 3, 38, 19, 0,
-		156, 157, 5, 15, 0, 0, 157, 158, 3, 38, 19, 0, 158, 159, 5, 16, 0, 0, 159,
-		160, 3, 38, 19, 0, 160, 162, 1, 0, 0, 0, 161, 154, 1, 0, 0, 0, 161, 156,
-		1, 0, 0, 0, 162, 164, 1, 0, 0, 0, 163, 149, 1, 0, 0, 0, 163, 150, 1, 0,
-		0, 0, 164, 15, 1, 0, 0, 0, 165, 181, 5, 13, 0, 0, 166, 182, 5, 27, 0, 0,
-		167, 168, 5, 29, 0, 0, 168, 169, 5, 30, 0, 0, 169, 170, 5, 15, 0, 0, 170,
-		182, 3, 26, 13, 0, 171, 172, 5, 29, 0, 0, 172, 175, 5, 31, 0, 0, 173, 174,
-		5, 15, 0, 0, 174, 176, 3, 26, 13, 0, 175, 173, 1, 0, 0, 0, 175, 176, 1,
-		0, 0, 0, 176, 177, 1, 0, 0, 0, 177, 178, 5, 32, 0, 0, 178, 179, 5, 33,
-		0, 0, 179, 180, 5, 4, 0, 0, 180, 182, 3, 32, 16, 0, 181, 166, 1, 0, 0,
-		0, 181, 167, 1, 0, 0, 0, 181, 171, 1, 0, 0, 0, 182, 17, 1, 0, 0, 0, 183,
-		185, 5, 39, 0, 0, 184, 186, 7, 1, 0, 0, 185, 184, 1, 0, 0, 0, 185, 186,
-		1, 0, 0, 0, 186, 19, 1, 0, 0, 0, 187, 192, 3, 22, 11, 0, 188, 189, 5, 5,
-		0, 0, 189, 191, 3, 22, 11, 0, 190, 188, 1, 0, 0, 0, 191, 194, 1, 0, 0,
-		0, 192, 190, 1, 0, 0, 0, 192, 193, 1, 0, 0, 0, 193, 21, 1, 0, 0, 0, 194,
-		192, 1, 0, 0, 0, 195, 196, 5, 53, 0, 0, 196, 197, 5, 2, 0, 0, 197, 198,
-		7, 2, 0, 0, 198, 201, 5, 3, 0, 0, 199, 200, 5, 46, 0, 0, 200, 202, 5, 53,
-		0, 0, 201, 199, 1, 0, 0, 0, 201, 202, 1, 0, 0, 0, 202, 23, 1, 0, 0, 0,
-		203, 204, 5, 23, 0, 0, 204, 207, 3, 26, 13, 0, 205, 206, 5, 18, 0, 0, 206,
-		208, 3, 28, 14, 0, 207, 205, 1, 0, 0, 0, 207, 208, 1, 0, 0, 0, 208, 25,
-		1, 0, 0, 0, 209, 210, 7, 3, 0, 0, 210, 27, 1, 0, 0, 0, 211, 212, 5, 2,
-		0, 0, 212, 217, 3, 30, 15, 0, 213, 214, 5, 5, 0, 0, 214, 216, 3, 30, 15,
-		0, 215, 213, 1, 0, 0, 0, 216, 219, 1, 0, 0, 0, 217, 215, 1, 0, 0, 0, 217,
-		218, 1, 0, 0, 0, 218, 220, 1, 0, 0, 0, 219, 217, 1, 0, 0, 0, 220, 221,
-		5, 3, 0, 0, 221, 29, 1, 0, 0, 0, 222, 223, 7, 3, 0, 0, 223, 224, 5, 4,
-		0, 0, 224, 225, 3, 32, 16, 0, 225, 31, 1, 0, 0, 0, 226, 227, 5, 54, 0,
-		0, 227, 33, 1, 0, 0, 0, 228, 229, 5, 2, 0, 0, 229, 234, 3, 36, 18, 0, 230,
-		231, 5, 5, 0, 0, 231, 233, 3, 36, 18, 0, 232, 230, 1, 0, 0, 0, 233, 236,
-		1, 0, 0, 0, 234, 232, 1, 0, 0, 0, 234, 235, 1, 0, 0, 0, 235, 237, 1, 0,
-		0, 0, 236, 234, 1, 0, 0, 0, 237, 238, 5, 3, 0, 0, 238, 35, 1, 0, 0, 0,
-		239, 240, 5, 53, 0, 0, 240, 241, 5, 4, 0, 0, 241, 242, 3, 44, 22, 0, 242,
-		37, 1, 0, 0, 0, 243, 257, 5, 52, 0, 0, 244, 245, 5, 35, 0, 0, 245, 246,
-		5, 2, 0, 0, 246, 257, 5, 3, 0, 0, 247, 248, 5, 35, 0, 0, 248, 249, 5, 2,
-		0, 0, 249, 250, 7, 4, 0, 0, 250, 251, 5, 51, 0, 0, 251, 257, 5, 3, 0, 0,
-		252, 253, 5, 47, 0, 0, 253, 254, 5, 2, 0, 0, 254, 255, 5, 54, 0, 0, 255,
-		257, 5, 3, 0, 0, 256, 243, 1, 0, 0, 0, 256, 244, 1, 0, 0, 0, 256, 247,
-		1, 0, 0, 0, 256, 252, 1, 0, 0, 0, 257, 39, 1, 0, 0, 0, 258, 259, 5, 51,
-		0, 0, 259, 41, 1, 0, 0, 0, 260, 261, 5, 52, 0, 0, 261, 43, 1, 0, 0, 0,
-		262, 263, 7, 5, 0, 0, 263, 45, 1, 0, 0, 0, 28, 53, 56, 67, 73, 77, 87,
-		90, 102, 107, 115, 119, 123, 127, 131, 135, 142, 146, 161, 163, 175, 181,
-		185, 192, 201, 207, 217, 234, 256,
+		21, 7, 21, 2, 22, 7, 22, 2, 23, 7, 23, 2, 24, 7, 24, 2, 25, 7, 25, 2, 26,
+		7, 26, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 3, 0, 63, 8, 0,
+		1, 0, 3, 0, 66, 8, 0, 1, 0, 1, 0, 1, 1, 1, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1,
+		2, 3, 2, 77, 8, 2, 1, 3, 1, 3, 1, 3, 1, 3, 3, 3, 83, 8, 3, 1, 3, 1, 3,
+		3, 3, 87, 8, 3, 1, 3, 1, 3, 1, 3, 1, 4, 1, 4, 1, 4, 1, 4, 1, 4, 3, 4, 97,
+		8, 4, 1, 5, 1, 5, 1, 5, 1, 5, 1, 5, 3, 5, 104, 8, 5, 1, 5, 3, 5, 107, 8,
+		5, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 1, 6, 3, 6, 119,
+		8, 6, 1, 7, 1, 7, 1, 7, 3, 7, 124, 8, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7,
+		1, 7, 3, 7, 132, 8, 7, 1, 7, 1, 7, 3, 7, 136, 8, 7, 1, 7, 1, 7, 3, 7, 140,
+		8, 7, 1, 7, 1, 7, 3, 7, 144, 8, 7, 1, 7, 1, 7, 3, 7, 148, 8, 7, 1, 7, 1,
+		7, 3, 7, 152, 8, 7, 1, 7, 1, 7, 1, 7, 1, 7, 1, 7, 3, 7, 159, 8, 7, 1, 7,
+		1, 7, 3, 7, 163, 8, 7, 1, 8, 1, 8, 1, 8, 1, 8, 1, 8, 1, 8, 1, 8, 1, 8,
+		1, 8, 1, 8, 1, 8, 1, 8, 1, 8, 3, 8, 178, 8, 8, 3, 8, 180, 8, 8, 1, 9, 1,
+		9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 1, 9, 3, 9, 192, 8, 9, 1,
+		9, 1, 9, 1, 9, 1, 9, 3, 9, 198, 8, 9, 1, 10, 1, 10, 3, 10, 202, 8, 10,
+		1, 11, 1, 11, 1, 11, 5, 11, 207, 8, 11, 10, 11, 12, 11, 210, 9, 11, 1,
+		12, 1, 12, 1, 12, 1, 12, 1, 12, 1, 12, 3, 12, 218, 8, 12, 1, 13, 1, 13,
+		1, 13, 1, 13, 3, 13, 224, 8, 13, 1, 14, 1, 14, 1, 15, 1, 15, 1, 15, 1,
+		15, 5, 15, 232, 8, 15, 10, 15, 12, 15, 235, 9, 15, 1, 15, 1, 15, 1, 16,
+		1, 16, 1, 16, 1, 16, 1, 17, 1, 17, 1, 18, 1, 18, 1, 18, 1, 18, 5, 18, 249,
+		8, 18, 10, 18, 12, 18, 252, 9, 18, 1, 18, 1, 18, 1, 19, 1, 19, 1, 19, 1,
+		19, 1, 20, 1, 20, 1, 20, 1, 20, 1, 20, 1, 20, 1, 20, 1, 20, 1, 20, 1, 20,
+		1, 20, 1, 20, 1, 20, 3, 20, 273, 8, 20, 1, 21, 1, 21, 1, 22, 1, 22, 1,
+		23, 1, 23, 1, 24, 1, 24, 1, 24, 1, 24, 5, 24, 285, 8, 24, 10, 24, 12, 24,
+		288, 9, 24, 1, 24, 1, 24, 1, 25, 1, 25, 1, 25, 1, 25, 1, 26, 1, 26, 1,
+		26, 0, 0, 27, 0, 2, 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30,
+		32, 34, 36, 38, 40, 42, 44, 46, 48, 50, 52, 0, 7, 1, 0, 46, 47, 1, 0, 42,
+		44, 2, 0, 6, 6, 55, 55, 1, 0, 55, 56, 1, 0, 51, 52, 3, 0, 38, 40, 54, 54,
+		56, 56, 3, 0, 38, 39, 53, 54, 56, 56, 311, 0, 62, 1, 0, 0, 0, 2, 69, 1,
+		0, 0, 0, 4, 71, 1, 0, 0, 0, 6, 78, 1, 0, 0, 0, 8, 91, 1, 0, 0, 0, 10, 98,
+		1, 0, 0, 0, 12, 118, 1, 0, 0, 0, 14, 162, 1, 0, 0, 0, 16, 164, 1, 0, 0,
+		0, 18, 181, 1, 0, 0, 0, 20, 199, 1, 0, 0, 0, 22, 203, 1, 0, 0, 0, 24, 211,
+		1, 0, 0, 0, 26, 219, 1, 0, 0, 0, 28, 225, 1, 0, 0, 0, 30, 227, 1, 0, 0,
+		0, 32, 238, 1, 0, 0, 0, 34, 242, 1, 0, 0, 0, 36, 244, 1, 0, 0, 0, 38, 255,
+		1, 0, 0, 0, 40, 272, 1, 0, 0, 0, 42, 274, 1, 0, 0, 0, 44, 276, 1, 0, 0,
+		0, 46, 278, 1, 0, 0, 0, 48, 280, 1, 0, 0, 0, 50, 291, 1, 0, 0, 0, 52, 295,
+		1, 0, 0, 0, 54, 63, 3, 6, 3, 0, 55, 63, 3, 8, 4, 0, 56, 63, 3, 10, 5, 0,
+		57, 63, 3, 16, 8, 0, 58, 63, 3, 18, 9, 0, 59, 63, 3, 20, 10, 0, 60, 63,
+		3, 2, 1, 0, 61, 63, 3, 4, 2, 0, 62, 54, 1, 0, 0, 0, 62, 55, 1, 0, 0, 0,
+		62, 56, 1, 0, 0, 0, 62, 57, 1, 0, 0, 0, 62, 58, 1, 0, 0, 0, 62, 59, 1,
+		0, 0, 0, 62, 60, 1, 0, 0, 0, 62, 61, 1, 0, 0, 0, 63, 65, 1, 0, 0, 0, 64,
+		66, 5, 1, 0, 0, 65, 64, 1, 0, 0, 0, 65, 66, 1, 0, 0, 0, 66, 67, 1, 0, 0,
+		0, 67, 68, 5, 0, 0, 1, 68, 1, 1, 0, 0, 0, 69, 70, 5, 9, 0, 0, 70, 3, 1,
+		0, 0, 0, 71, 72, 5, 8, 0, 0, 72, 73, 5, 17, 0, 0, 73, 76, 5, 56, 0, 0,
+		74, 75, 5, 34, 0, 0, 75, 77, 5, 7, 0, 0, 76, 74, 1, 0, 0, 0, 76, 77, 1,
+		0, 0, 0, 77, 5, 1, 0, 0, 0, 78, 79, 5, 12, 0, 0, 79, 82, 3, 28, 14, 0,
+		80, 81, 5, 36, 0, 0, 81, 83, 3, 40, 20, 0, 82, 80, 1, 0, 0, 0, 82, 83,
+		1, 0, 0, 0, 83, 86, 1, 0, 0, 0, 84, 85, 5, 20, 0, 0, 85, 87, 3, 30, 15,
+		0, 86, 84, 1, 0, 0, 0, 86, 87, 1, 0, 0, 0, 87, 88, 1, 0, 0, 0, 88, 89,
+		5, 16, 0, 0, 89, 90, 3, 36, 18, 0, 90, 7, 1, 0, 0, 0, 91, 92, 5, 11, 0,
+		0, 92, 93, 5, 29, 0, 0, 93, 96, 3, 28, 14, 0, 94, 95, 5, 34, 0, 0, 95,
+		97, 3, 48, 24, 0, 96, 94, 1, 0, 0, 0, 96, 97, 1, 0, 0, 0, 97, 9, 1, 0,
+		0, 0, 98, 99, 5, 13, 0, 0, 99, 100, 3, 28, 14, 0, 100, 103, 3, 12, 6, 0,
+		101, 102, 5, 20, 0, 0, 102, 104, 3, 30, 15, 0, 103, 101, 1, 0, 0, 0, 103,
+		104, 1, 0, 0, 0, 104, 106, 1, 0, 0, 0, 105, 107, 3, 14, 7, 0, 106, 105,
+		1, 0, 0, 0, 106, 107, 1, 0, 0, 0, 107, 11, 1, 0, 0, 0, 108, 109, 5, 17,
+		0, 0, 109, 110, 3, 40, 20, 0, 110, 111, 5, 18, 0, 0, 111, 112, 3, 40, 20,
+		0, 112, 119, 1, 0, 0, 0, 113, 114, 5, 17, 0, 0, 114, 115, 5, 50, 0, 0,
+		115, 116, 5, 2, 0, 0, 116, 117, 5, 53, 0, 0, 117, 119, 5, 3, 0, 0, 118,
+		108, 1, 0, 0, 0, 118, 113, 1, 0, 0, 0, 119, 13, 1, 0, 0, 0, 120, 123, 5,
+		21, 0, 0, 121, 122, 5, 22, 0, 0, 122, 124, 3, 42, 21, 0, 123, 121, 1, 0,
+		0, 0, 123, 124, 1, 0, 0, 0, 124, 125, 1, 0, 0, 0, 125, 126, 5, 2, 0, 0,
+		126, 127, 3, 22, 11, 0, 127, 131, 5, 3, 0, 0, 128, 129, 5, 34, 0, 0, 129,
+		130, 5, 27, 0, 0, 130, 132, 5, 28, 0, 0, 131, 128, 1, 0, 0, 0, 131, 132,
+		1, 0, 0, 0, 132, 135, 1, 0, 0, 0, 133, 134, 5, 24, 0, 0, 134, 136, 5, 54,
+		0, 0, 135, 133, 1, 0, 0, 0, 135, 136, 1, 0, 0, 0, 136, 139, 1, 0, 0, 0,
+		137, 138, 5, 26, 0, 0, 138, 140, 5, 56, 0, 0, 139, 137, 1, 0, 0, 0, 139,
+		140, 1, 0, 0, 0, 140, 163, 1, 0, 0, 0, 141, 143, 5, 45, 0, 0, 142, 144,
+		7, 0, 0, 0, 143, 142, 1, 0, 0, 0, 143, 144, 1, 0, 0, 0, 144, 147, 1, 0,
+		0, 0, 145, 146, 5, 24, 0, 0, 146, 148, 5, 54, 0, 0, 147, 145, 1, 0, 0,
+		0, 147, 148, 1, 0, 0, 0, 148, 151, 1, 0, 0, 0, 149, 150, 5, 26, 0, 0, 150,
+		152, 5, 56, 0, 0, 151, 149, 1, 0, 0, 0, 151, 152, 1, 0, 0, 0, 152, 163,
+		1, 0, 0, 0, 153, 154, 5, 24, 0, 0, 154, 155, 5, 54, 0, 0, 155, 158, 1,
+		0, 0, 0, 156, 157, 5, 26, 0, 0, 157, 159, 5, 56, 0, 0, 158, 156, 1, 0,
+		0, 0, 158, 159, 1, 0, 0, 0, 159, 163, 1, 0, 0, 0, 160, 161, 5, 26, 0, 0,
+		161, 163, 5, 56, 0, 0, 162, 120, 1, 0, 0, 0, 162, 141, 1, 0, 0, 0, 162,
+		153, 1, 0, 0, 0, 162, 160, 1, 0, 0, 0, 163, 15, 1, 0, 0, 0, 164, 179, 5,
+		14, 0, 0, 165, 180, 3, 26, 13, 0, 166, 167, 5, 17, 0, 0, 167, 168, 3, 28,
+		14, 0, 168, 169, 5, 20, 0, 0, 169, 177, 3, 30, 15, 0, 170, 171, 5, 19,
+		0, 0, 171, 178, 3, 40, 20, 0, 172, 173, 5, 17, 0, 0, 173, 174, 3, 40, 20,
+		0, 174, 175, 5, 18, 0, 0, 175, 176, 3, 40, 20, 0, 176, 178, 1, 0, 0, 0,
+		177, 170, 1, 0, 0, 0, 177, 172, 1, 0, 0, 0, 178, 180, 1, 0, 0, 0, 179,
+		165, 1, 0, 0, 0, 179, 166, 1, 0, 0, 0, 180, 17, 1, 0, 0, 0, 181, 197, 5,
+		15, 0, 0, 182, 198, 5, 29, 0, 0, 183, 184, 5, 31, 0, 0, 184, 185, 5, 32,
+		0, 0, 185, 186, 5, 17, 0, 0, 186, 198, 3, 28, 14, 0, 187, 188, 5, 31, 0,
+		0, 188, 191, 5, 33, 0, 0, 189, 190, 5, 17, 0, 0, 190, 192, 3, 28, 14, 0,
+		191, 189, 1, 0, 0, 0, 191, 192, 1, 0, 0, 0, 192, 193, 1, 0, 0, 0, 193,
+		194, 5, 34, 0, 0, 194, 195, 5, 35, 0, 0, 195, 196, 5, 4, 0, 0, 196, 198,
+		3, 34, 17, 0, 197, 182, 1, 0, 0, 0, 197, 183, 1, 0, 0, 0, 197, 187, 1,
+		0, 0, 0, 198, 19, 1, 0, 0, 0, 199, 201, 5, 41, 0, 0, 200, 202, 7, 1, 0,
+		0, 201, 200, 1, 0, 0, 0, 201, 202, 1, 0, 0, 0, 202, 21, 1, 0, 0, 0, 203,
+		208, 3, 24, 12, 0, 204, 205, 5, 5, 0, 0, 205, 207, 3, 24, 12, 0, 206, 204,
+		1, 0, 0, 0, 207, 210, 1, 0, 0, 0, 208, 206, 1, 0, 0, 0, 208, 209, 1, 0,
+		0, 0, 209, 23, 1, 0, 0, 0, 210, 208, 1, 0, 0, 0, 211, 212, 5, 55, 0, 0,
+		212, 213, 5, 2, 0, 0, 213, 214, 7, 2, 0, 0, 214, 217, 5, 3, 0, 0, 215,
+		216, 5, 48, 0, 0, 216, 218, 5, 55, 0, 0, 217, 215, 1, 0, 0, 0, 217, 218,
+		1, 0, 0, 0, 218, 25, 1, 0, 0, 0, 219, 220, 5, 25, 0, 0, 220, 223, 3, 28,
+		14, 0, 221, 222, 5, 20, 0, 0, 222, 224, 3, 30, 15, 0, 223, 221, 1, 0, 0,
+		0, 223, 224, 1, 0, 0, 0, 224, 27, 1, 0, 0, 0, 225, 226, 7, 3, 0, 0, 226,
+		29, 1, 0, 0, 0, 227, 228, 5, 2, 0, 0, 228, 233, 3, 32, 16, 0, 229, 230,
+		5, 5, 0, 0, 230, 232, 3, 32, 16, 0, 231, 229, 1, 0, 0, 0, 232, 235, 1,
+		0, 0, 0, 233, 231, 1, 0, 0, 0, 233, 234, 1, 0, 0, 0, 234, 236, 1, 0, 0,
+		0, 235, 233, 1, 0, 0, 0, 236, 237, 5, 3, 0, 0, 237, 31, 1, 0, 0, 0, 238,
+		239, 7, 3, 0, 0, 239, 240, 5, 4, 0, 0, 240, 241, 3, 34, 17, 0, 241, 33,
+		1, 0, 0, 0, 242, 243, 5, 56, 0, 0, 243, 35, 1, 0, 0, 0, 244, 245, 5, 2,
+		0, 0, 245, 250, 3, 38, 19, 0, 246, 247, 5, 5, 0, 0, 247, 249, 3, 38, 19,
+		0, 248, 246, 1, 0, 0, 0, 249, 252, 1, 0, 0, 0, 250, 248, 1, 0, 0, 0, 250,
+		251, 1, 0, 0, 0, 251, 253, 1, 0, 0, 0, 252, 250, 1, 0, 0, 0, 253, 254,
+		5, 3, 0, 0, 254, 37, 1, 0, 0, 0, 255, 256, 5, 55, 0, 0, 256, 257, 5, 4,
+		0, 0, 257, 258, 3, 46, 23, 0, 258, 39, 1, 0, 0, 0, 259, 273, 5, 54, 0,
+		0, 260, 261, 5, 37, 0, 0, 261, 262, 5, 2, 0, 0, 262, 273, 5, 3, 0, 0, 263,
+		264, 5, 37, 0, 0, 264, 265, 5, 2, 0, 0, 265, 266, 7, 4, 0, 0, 266, 267,
+		5, 53, 0, 0, 267, 273, 5, 3, 0, 0, 268, 269, 5, 49, 0, 0, 269, 270, 5,
+		2, 0, 0, 270, 271, 5, 56, 0, 0, 271, 273, 5, 3, 0, 0, 272, 259, 1, 0, 0,
+		0, 272, 260, 1, 0, 0, 0, 272, 263, 1, 0, 0, 0, 272, 268, 1, 0, 0, 0, 273,
+		41, 1, 0, 0, 0, 274, 275, 5, 53, 0, 0, 275, 43, 1, 0, 0, 0, 276, 277, 5,
+		54, 0, 0, 277, 45, 1, 0, 0, 0, 278, 279, 7, 5, 0, 0, 279, 47, 1, 0, 0,
+		0, 280, 281, 5, 2, 0, 0, 281, 286, 3, 50, 25, 0, 282, 283, 5, 5, 0, 0,
+		283, 285, 3, 50, 25, 0, 284, 282, 1, 0, 0, 0, 285, 288, 1, 0, 0, 0, 286,
+		284, 1, 0, 0, 0, 286, 287, 1, 0, 0, 0, 287, 289, 1, 0, 0, 0, 288, 286,
+		1, 0, 0, 0, 289, 290, 5, 3, 0, 0, 290, 49, 1, 0, 0, 0, 291, 292, 7, 3,
+		0, 0, 292, 293, 5, 4, 0, 0, 293, 294, 3, 52, 26, 0, 294, 51, 1, 0, 0, 0,
+		295, 296, 7, 6, 0, 0, 296, 53, 1, 0, 0, 0, 30, 62, 65, 76, 82, 86, 96,
+		103, 106, 118, 123, 131, 135, 139, 143, 147, 151, 158, 162, 177, 179, 191,
+		197, 201, 208, 217, 223, 233, 250, 272, 286,
 	}
 	deserializer := antlr.NewATNDeserializer(nil)
 	staticData.atn = deserializer.Deserialize(staticData.serializedATN)
@@ -219,53 +234,55 @@ const (
 	NexusParserK_OVERWRITE      = 7
 	NexusParserK_RESTORE        = 8
 	NexusParserK_SNAPSHOT       = 9
-	NexusParserK_PUSH           = 10
-	NexusParserK_QUERY          = 11
-	NexusParserK_REMOVE         = 12
-	NexusParserK_SHOW           = 13
-	NexusParserK_SET            = 14
-	NexusParserK_FROM           = 15
-	NexusParserK_TO             = 16
-	NexusParserK_AT             = 17
-	NexusParserK_TAGGED         = 18
-	NexusParserK_AGGREGATE      = 19
-	NexusParserK_BY             = 20
-	NexusParserK_ON             = 21
-	NexusParserK_LIMIT          = 22
-	NexusParserK_SERIES         = 23
-	NexusParserK_AFTER          = 24
-	NexusParserK_EMPTY          = 25
-	NexusParserK_WINDOWS        = 26
-	NexusParserK_METRICS        = 27
-	NexusParserK_TAGS           = 28
-	NexusParserK_TAG            = 29
-	NexusParserK_KEYS           = 30
-	NexusParserK_VALUES         = 31
-	NexusParserK_WITH           = 32
-	NexusParserK_KEY            = 33
-	NexusParserK_TIME           = 34
-	NexusParserK_NOW            = 35
-	NexusParserK_TRUE           = 36
-	NexusParserK_FALSE          = 37
-	NexusParserK_NULL           = 38
-	NexusParserK_FLUSH          = 39
-	NexusParserK_MEMTABLE       = 40
-	NexusParserK_DISK           = 41
-	NexusParserK_ALL            = 42
-	NexusParserK_ORDER          = 43
-	NexusParserK_ASC            = 44
-	NexusParserK_DESC           = 45
-	NexusParserK_AS             = 46
-	NexusParserK_DT             = 47
-	NexusParserK_RELATIVE       = 48
-	NexusParserPLUS             = 49
-	NexusParserMINUS            = 50
-	NexusParserDURATION_LITERAL = 51
-	NexusParserNUMBER           = 52
-	NexusParserIDENTIFIER       = 53
-	NexusParserSTRING_LITERAL   = 54
-	NexusParserWS               = 55
-	NexusParserLINE_COMMENT     = 56
+	NexusParserK_CREATE         = 10
+	NexusParserK_CONFIG         = 11
+	NexusParserK_PUSH           = 12
+	NexusParserK_QUERY          = 13
+	NexusParserK_REMOVE         = 14
+	NexusParserK_SHOW           = 15
+	NexusParserK_SET            = 16
+	NexusParserK_FROM           = 17
+	NexusParserK_TO             = 18
+	NexusParserK_AT             = 19
+	NexusParserK_TAGGED         = 20
+	NexusParserK_AGGREGATE      = 21
+	NexusParserK_BY             = 22
+	NexusParserK_ON             = 23
+	NexusParserK_LIMIT          = 24
+	NexusParserK_SERIES         = 25
+	NexusParserK_AFTER          = 26
+	NexusParserK_EMPTY          = 27
+	NexusParserK_WINDOWS        = 28
+	NexusParserK_METRICS        = 29
+	NexusParserK_TAGS           = 30
+	NexusParserK_TAG            = 31
+	NexusParserK_KEYS           = 32
+	NexusParserK_VALUES         = 33
+	NexusParserK_WITH           = 34
+	NexusParserK_KEY            = 35
+	NexusParserK_TIME           = 36
+	NexusParserK_NOW            = 37
+	NexusParserK_TRUE           = 38
+	NexusParserK_FALSE          = 39
+	NexusParserK_NULL           = 40
+	NexusParserK_FLUSH          = 41
+	NexusParserK_MEMTABLE       = 42
+	NexusParserK_DISK           = 43
+	NexusParserK_ALL            = 44
+	NexusParserK_ORDER          = 45
+	NexusParserK_ASC            = 46
+	NexusParserK_DESC           = 47
+	NexusParserK_AS             = 48
+	NexusParserK_DT             = 49
+	NexusParserK_RELATIVE       = 50
+	NexusParserPLUS             = 51
+	NexusParserMINUS            = 52
+	NexusParserDURATION_LITERAL = 53
+	NexusParserNUMBER           = 54
+	NexusParserIDENTIFIER       = 55
+	NexusParserSTRING_LITERAL   = 56
+	NexusParserWS               = 57
+	NexusParserLINE_COMMENT     = 58
 )
 
 // NexusParser rules.
@@ -274,25 +291,29 @@ const (
 	NexusParserRULE_snapshotStatement     = 1
 	NexusParserRULE_restoreStatement      = 2
 	NexusParserRULE_pushStatement         = 3
-	NexusParserRULE_queryStatement        = 4
-	NexusParserRULE_time_range            = 5
-	NexusParserRULE_query_clauses         = 6
-	NexusParserRULE_removeStatement       = 7
-	NexusParserRULE_showStatement         = 8
-	NexusParserRULE_flushStatement        = 9
-	NexusParserRULE_aggregation_spec_list = 10
-	NexusParserRULE_aggregation_spec      = 11
-	NexusParserRULE_series_specifier      = 12
-	NexusParserRULE_metric_name           = 13
-	NexusParserRULE_tag_list              = 14
-	NexusParserRULE_tag_assignment        = 15
-	NexusParserRULE_tag_value             = 16
-	NexusParserRULE_field_list            = 17
-	NexusParserRULE_field_assignment      = 18
-	NexusParserRULE_timestamp             = 19
-	NexusParserRULE_duration              = 20
-	NexusParserRULE_value                 = 21
-	NexusParserRULE_literal_value         = 22
+	NexusParserRULE_createStatement       = 4
+	NexusParserRULE_queryStatement        = 5
+	NexusParserRULE_time_range            = 6
+	NexusParserRULE_query_clauses         = 7
+	NexusParserRULE_removeStatement       = 8
+	NexusParserRULE_showStatement         = 9
+	NexusParserRULE_flushStatement        = 10
+	NexusParserRULE_aggregation_spec_list = 11
+	NexusParserRULE_aggregation_spec      = 12
+	NexusParserRULE_series_specifier      = 13
+	NexusParserRULE_metric_name           = 14
+	NexusParserRULE_tag_list              = 15
+	NexusParserRULE_tag_assignment        = 16
+	NexusParserRULE_tag_value             = 17
+	NexusParserRULE_field_list            = 18
+	NexusParserRULE_field_assignment      = 19
+	NexusParserRULE_timestamp             = 20
+	NexusParserRULE_duration              = 21
+	NexusParserRULE_value                 = 22
+	NexusParserRULE_literal_value         = 23
+	NexusParserRULE_option_list           = 24
+	NexusParserRULE_option_assignment     = 25
+	NexusParserRULE_option_value          = 26
 )
 
 // IStatementContext is an interface to support dynamic dispatch.
@@ -305,6 +326,7 @@ type IStatementContext interface {
 	// Getter signatures
 	EOF() antlr.TerminalNode
 	PushStatement() IPushStatementContext
+	CreateStatement() ICreateStatementContext
 	QueryStatement() IQueryStatementContext
 	RemoveStatement() IRemoveStatementContext
 	ShowStatement() IShowStatementContext
@@ -366,6 +388,22 @@ func (s *StatementContext) PushStatement() IPushStatementContext {
 	}
 
 	return t.(IPushStatementContext)
+}
+
+func (s *StatementContext) CreateStatement() ICreateStatementContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(ICreateStatementContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(ICreateStatementContext)
 }
 
 func (s *StatementContext) QueryStatement() IQueryStatementContext {
@@ -500,7 +538,7 @@ func (p *NexusParser) Statement() (localctx IStatementContext) {
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
-	p.SetState(53)
+	p.SetState(62)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -509,43 +547,49 @@ func (p *NexusParser) Statement() (localctx IStatementContext) {
 	switch p.GetTokenStream().LA(1) {
 	case NexusParserK_PUSH:
 		{
-			p.SetState(46)
+			p.SetState(54)
 			p.PushStatement()
+		}
+
+	case NexusParserK_CONFIG:
+		{
+			p.SetState(55)
+			p.CreateStatement()
 		}
 
 	case NexusParserK_QUERY:
 		{
-			p.SetState(47)
+			p.SetState(56)
 			p.QueryStatement()
 		}
 
 	case NexusParserK_REMOVE:
 		{
-			p.SetState(48)
+			p.SetState(57)
 			p.RemoveStatement()
 		}
 
 	case NexusParserK_SHOW:
 		{
-			p.SetState(49)
+			p.SetState(58)
 			p.ShowStatement()
 		}
 
 	case NexusParserK_FLUSH:
 		{
-			p.SetState(50)
+			p.SetState(59)
 			p.FlushStatement()
 		}
 
 	case NexusParserK_SNAPSHOT:
 		{
-			p.SetState(51)
+			p.SetState(60)
 			p.SnapshotStatement()
 		}
 
 	case NexusParserK_RESTORE:
 		{
-			p.SetState(52)
+			p.SetState(61)
 			p.RestoreStatement()
 		}
 
@@ -553,7 +597,7 @@ func (p *NexusParser) Statement() (localctx IStatementContext) {
 		p.SetError(antlr.NewNoViableAltException(p, nil, nil, nil, nil, nil))
 		goto errorExit
 	}
-	p.SetState(56)
+	p.SetState(65)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -562,7 +606,7 @@ func (p *NexusParser) Statement() (localctx IStatementContext) {
 
 	if _la == NexusParserT__0 {
 		{
-			p.SetState(55)
+			p.SetState(64)
 			p.Match(NexusParserT__0)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -572,7 +616,7 @@ func (p *NexusParser) Statement() (localctx IStatementContext) {
 
 	}
 	{
-		p.SetState(58)
+		p.SetState(67)
 		p.Match(NexusParserEOF)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -678,7 +722,7 @@ func (p *NexusParser) SnapshotStatement() (localctx ISnapshotStatementContext) {
 	p.EnterRule(localctx, 2, NexusParserRULE_snapshotStatement)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(60)
+		p.SetState(69)
 		p.Match(NexusParserK_SNAPSHOT)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -806,7 +850,7 @@ func (p *NexusParser) RestoreStatement() (localctx IRestoreStatementContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(62)
+		p.SetState(71)
 		p.Match(NexusParserK_RESTORE)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -814,7 +858,7 @@ func (p *NexusParser) RestoreStatement() (localctx IRestoreStatementContext) {
 		}
 	}
 	{
-		p.SetState(63)
+		p.SetState(72)
 		p.Match(NexusParserK_FROM)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -822,14 +866,14 @@ func (p *NexusParser) RestoreStatement() (localctx IRestoreStatementContext) {
 		}
 	}
 	{
-		p.SetState(64)
+		p.SetState(73)
 		p.Match(NexusParserSTRING_LITERAL)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(67)
+	p.SetState(76)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -838,7 +882,7 @@ func (p *NexusParser) RestoreStatement() (localctx IRestoreStatementContext) {
 
 	if _la == NexusParserK_WITH {
 		{
-			p.SetState(65)
+			p.SetState(74)
 			p.Match(NexusParserK_WITH)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -846,7 +890,7 @@ func (p *NexusParser) RestoreStatement() (localctx IRestoreStatementContext) {
 			}
 		}
 		{
-			p.SetState(66)
+			p.SetState(75)
 			p.Match(NexusParserK_OVERWRITE)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1039,7 +1083,7 @@ func (p *NexusParser) PushStatement() (localctx IPushStatementContext) {
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(69)
+		p.SetState(78)
 		p.Match(NexusParserK_PUSH)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1047,10 +1091,10 @@ func (p *NexusParser) PushStatement() (localctx IPushStatementContext) {
 		}
 	}
 	{
-		p.SetState(70)
+		p.SetState(79)
 		p.Metric_name()
 	}
-	p.SetState(73)
+	p.SetState(82)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1059,7 +1103,7 @@ func (p *NexusParser) PushStatement() (localctx IPushStatementContext) {
 
 	if _la == NexusParserK_TIME {
 		{
-			p.SetState(71)
+			p.SetState(80)
 			p.Match(NexusParserK_TIME)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1067,12 +1111,12 @@ func (p *NexusParser) PushStatement() (localctx IPushStatementContext) {
 			}
 		}
 		{
-			p.SetState(72)
+			p.SetState(81)
 			p.Timestamp()
 		}
 
 	}
-	p.SetState(77)
+	p.SetState(86)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1081,7 +1125,7 @@ func (p *NexusParser) PushStatement() (localctx IPushStatementContext) {
 
 	if _la == NexusParserK_TAGGED {
 		{
-			p.SetState(75)
+			p.SetState(84)
 			p.Match(NexusParserK_TAGGED)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1089,13 +1133,13 @@ func (p *NexusParser) PushStatement() (localctx IPushStatementContext) {
 			}
 		}
 		{
-			p.SetState(76)
+			p.SetState(85)
 			p.Tag_list()
 		}
 
 	}
 	{
-		p.SetState(79)
+		p.SetState(88)
 		p.Match(NexusParserK_SET)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1103,8 +1147,194 @@ func (p *NexusParser) PushStatement() (localctx IPushStatementContext) {
 		}
 	}
 	{
-		p.SetState(80)
+		p.SetState(89)
 		p.Field_list()
+	}
+
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
+	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
+}
+
+// ICreateStatementContext is an interface to support dynamic dispatch.
+type ICreateStatementContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// Getter signatures
+	K_CONFIG() antlr.TerminalNode
+	K_METRICS() antlr.TerminalNode
+	Metric_name() IMetric_nameContext
+	K_WITH() antlr.TerminalNode
+	Option_list() IOption_listContext
+
+	// IsCreateStatementContext differentiates from other interfaces.
+	IsCreateStatementContext()
+}
+
+type CreateStatementContext struct {
+	antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyCreateStatementContext() *CreateStatementContext {
+	var p = new(CreateStatementContext)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = NexusParserRULE_createStatement
+	return p
+}
+
+func InitEmptyCreateStatementContext(p *CreateStatementContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = NexusParserRULE_createStatement
+}
+
+func (*CreateStatementContext) IsCreateStatementContext() {}
+
+func NewCreateStatementContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *CreateStatementContext {
+	var p = new(CreateStatementContext)
+
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = NexusParserRULE_createStatement
+
+	return p
+}
+
+func (s *CreateStatementContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *CreateStatementContext) K_CONFIG() antlr.TerminalNode {
+	return s.GetToken(NexusParserK_CONFIG, 0)
+}
+
+func (s *CreateStatementContext) K_METRICS() antlr.TerminalNode {
+	return s.GetToken(NexusParserK_METRICS, 0)
+}
+
+func (s *CreateStatementContext) Metric_name() IMetric_nameContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IMetric_nameContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IMetric_nameContext)
+}
+
+func (s *CreateStatementContext) K_WITH() antlr.TerminalNode {
+	return s.GetToken(NexusParserK_WITH, 0)
+}
+
+func (s *CreateStatementContext) Option_list() IOption_listContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IOption_listContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IOption_listContext)
+}
+
+func (s *CreateStatementContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *CreateStatementContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *CreateStatementContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NexusListener); ok {
+		listenerT.EnterCreateStatement(s)
+	}
+}
+
+func (s *CreateStatementContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NexusListener); ok {
+		listenerT.ExitCreateStatement(s)
+	}
+}
+
+func (s *CreateStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case NexusVisitor:
+		return t.VisitCreateStatement(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *NexusParser) CreateStatement() (localctx ICreateStatementContext) {
+	localctx = NewCreateStatementContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 8, NexusParserRULE_createStatement)
+	var _la int
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(91)
+		p.Match(NexusParserK_CONFIG)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	{
+		p.SetState(92)
+		p.Match(NexusParserK_METRICS)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	{
+		p.SetState(93)
+		p.Metric_name()
+	}
+	p.SetState(96)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
+	_la = p.GetTokenStream().LA(1)
+
+	if _la == NexusParserK_WITH {
+		{
+			p.SetState(94)
+			p.Match(NexusParserK_WITH)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(95)
+			p.Option_list()
+		}
+
 	}
 
 errorExit:
@@ -1275,12 +1505,12 @@ func (s *QueryStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface
 
 func (p *NexusParser) QueryStatement() (localctx IQueryStatementContext) {
 	localctx = NewQueryStatementContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 8, NexusParserRULE_queryStatement)
+	p.EnterRule(localctx, 10, NexusParserRULE_queryStatement)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(82)
+		p.SetState(98)
 		p.Match(NexusParserK_QUERY)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -1288,14 +1518,14 @@ func (p *NexusParser) QueryStatement() (localctx IQueryStatementContext) {
 		}
 	}
 	{
-		p.SetState(83)
+		p.SetState(99)
 		p.Metric_name()
 	}
 	{
-		p.SetState(84)
+		p.SetState(100)
 		p.Time_range()
 	}
-	p.SetState(87)
+	p.SetState(103)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1304,7 +1534,7 @@ func (p *NexusParser) QueryStatement() (localctx IQueryStatementContext) {
 
 	if _la == NexusParserK_TAGGED {
 		{
-			p.SetState(85)
+			p.SetState(101)
 			p.Match(NexusParserK_TAGGED)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1312,21 +1542,21 @@ func (p *NexusParser) QueryStatement() (localctx IQueryStatementContext) {
 			}
 		}
 		{
-			p.SetState(86)
+			p.SetState(102)
 			p.Tag_list()
 		}
 
 	}
-	p.SetState(90)
+	p.SetState(106)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&8796114518016) != 0 {
+	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&35184458072064) != 0 {
 		{
-			p.SetState(89)
+			p.SetState(105)
 			p.Query_clauses()
 		}
 
@@ -1485,18 +1715,18 @@ func (s *Time_rangeContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *NexusParser) Time_range() (localctx ITime_rangeContext) {
 	localctx = NewTime_rangeContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 10, NexusParserRULE_time_range)
-	p.SetState(102)
+	p.EnterRule(localctx, 12, NexusParserRULE_time_range)
+	p.SetState(118)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 
-	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 7, p.GetParserRuleContext()) {
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 8, p.GetParserRuleContext()) {
 	case 1:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(92)
+			p.SetState(108)
 			p.Match(NexusParserK_FROM)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1504,11 +1734,11 @@ func (p *NexusParser) Time_range() (localctx ITime_rangeContext) {
 			}
 		}
 		{
-			p.SetState(93)
+			p.SetState(109)
 			p.Timestamp()
 		}
 		{
-			p.SetState(94)
+			p.SetState(110)
 			p.Match(NexusParserK_TO)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1516,14 +1746,14 @@ func (p *NexusParser) Time_range() (localctx ITime_rangeContext) {
 			}
 		}
 		{
-			p.SetState(95)
+			p.SetState(111)
 			p.Timestamp()
 		}
 
 	case 2:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(97)
+			p.SetState(113)
 			p.Match(NexusParserK_FROM)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1531,7 +1761,7 @@ func (p *NexusParser) Time_range() (localctx ITime_rangeContext) {
 			}
 		}
 		{
-			p.SetState(98)
+			p.SetState(114)
 			p.Match(NexusParserK_RELATIVE)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1539,7 +1769,7 @@ func (p *NexusParser) Time_range() (localctx ITime_rangeContext) {
 			}
 		}
 		{
-			p.SetState(99)
+			p.SetState(115)
 			p.Match(NexusParserT__1)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1547,7 +1777,7 @@ func (p *NexusParser) Time_range() (localctx ITime_rangeContext) {
 			}
 		}
 		{
-			p.SetState(100)
+			p.SetState(116)
 			p.Match(NexusParserDURATION_LITERAL)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1555,7 +1785,7 @@ func (p *NexusParser) Time_range() (localctx ITime_rangeContext) {
 			}
 		}
 		{
-			p.SetState(101)
+			p.SetState(117)
 			p.Match(NexusParserT__2)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1751,10 +1981,10 @@ func (s *Query_clausesContext) Accept(visitor antlr.ParseTreeVisitor) interface{
 
 func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 	localctx = NewQuery_clausesContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 12, NexusParserRULE_query_clauses)
+	p.EnterRule(localctx, 14, NexusParserRULE_query_clauses)
 	var _la int
 
-	p.SetState(146)
+	p.SetState(162)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -1764,14 +1994,14 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 	case NexusParserK_AGGREGATE:
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(104)
+			p.SetState(120)
 			p.Match(NexusParserK_AGGREGATE)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-		p.SetState(107)
+		p.SetState(123)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1780,7 +2010,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 
 		if _la == NexusParserK_BY {
 			{
-				p.SetState(105)
+				p.SetState(121)
 				p.Match(NexusParserK_BY)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -1788,13 +2018,13 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 				}
 			}
 			{
-				p.SetState(106)
+				p.SetState(122)
 				p.Duration()
 			}
 
 		}
 		{
-			p.SetState(109)
+			p.SetState(125)
 			p.Match(NexusParserT__1)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1802,18 +2032,18 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 			}
 		}
 		{
-			p.SetState(110)
+			p.SetState(126)
 			p.Aggregation_spec_list()
 		}
 		{
-			p.SetState(111)
+			p.SetState(127)
 			p.Match(NexusParserT__2)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-		p.SetState(115)
+		p.SetState(131)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1822,7 +2052,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 
 		if _la == NexusParserK_WITH {
 			{
-				p.SetState(112)
+				p.SetState(128)
 				p.Match(NexusParserK_WITH)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -1830,7 +2060,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 				}
 			}
 			{
-				p.SetState(113)
+				p.SetState(129)
 				p.Match(NexusParserK_EMPTY)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -1838,7 +2068,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 				}
 			}
 			{
-				p.SetState(114)
+				p.SetState(130)
 				p.Match(NexusParserK_WINDOWS)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -1848,7 +2078,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 
 		}
 
-		p.SetState(119)
+		p.SetState(135)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1857,7 +2087,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 
 		if _la == NexusParserK_LIMIT {
 			{
-				p.SetState(117)
+				p.SetState(133)
 				p.Match(NexusParserK_LIMIT)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -1865,7 +2095,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 				}
 			}
 			{
-				p.SetState(118)
+				p.SetState(134)
 				p.Match(NexusParserNUMBER)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -1874,7 +2104,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 			}
 
 		}
-		p.SetState(123)
+		p.SetState(139)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1883,7 +2113,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 
 		if _la == NexusParserK_AFTER {
 			{
-				p.SetState(121)
+				p.SetState(137)
 				p.Match(NexusParserK_AFTER)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -1891,7 +2121,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 				}
 			}
 			{
-				p.SetState(122)
+				p.SetState(138)
 				p.Match(NexusParserSTRING_LITERAL)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -1904,14 +2134,14 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 	case NexusParserK_ORDER:
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(125)
+			p.SetState(141)
 			p.Match(NexusParserK_ORDER)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-		p.SetState(127)
+		p.SetState(143)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1920,7 +2150,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 
 		if _la == NexusParserK_ASC || _la == NexusParserK_DESC {
 			{
-				p.SetState(126)
+				p.SetState(142)
 				_la = p.GetTokenStream().LA(1)
 
 				if !(_la == NexusParserK_ASC || _la == NexusParserK_DESC) {
@@ -1933,7 +2163,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 
 		}
 
-		p.SetState(131)
+		p.SetState(147)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1942,7 +2172,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 
 		if _la == NexusParserK_LIMIT {
 			{
-				p.SetState(129)
+				p.SetState(145)
 				p.Match(NexusParserK_LIMIT)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -1950,7 +2180,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 				}
 			}
 			{
-				p.SetState(130)
+				p.SetState(146)
 				p.Match(NexusParserNUMBER)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -1959,7 +2189,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 			}
 
 		}
-		p.SetState(135)
+		p.SetState(151)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -1968,7 +2198,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 
 		if _la == NexusParserK_AFTER {
 			{
-				p.SetState(133)
+				p.SetState(149)
 				p.Match(NexusParserK_AFTER)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -1976,7 +2206,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 				}
 			}
 			{
-				p.SetState(134)
+				p.SetState(150)
 				p.Match(NexusParserSTRING_LITERAL)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -1989,7 +2219,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 	case NexusParserK_LIMIT:
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(137)
+			p.SetState(153)
 			p.Match(NexusParserK_LIMIT)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -1997,7 +2227,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 			}
 		}
 		{
-			p.SetState(138)
+			p.SetState(154)
 			p.Match(NexusParserNUMBER)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2005,7 +2235,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 			}
 		}
 
-		p.SetState(142)
+		p.SetState(158)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -2014,7 +2244,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 
 		if _la == NexusParserK_AFTER {
 			{
-				p.SetState(140)
+				p.SetState(156)
 				p.Match(NexusParserK_AFTER)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -2022,7 +2252,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 				}
 			}
 			{
-				p.SetState(141)
+				p.SetState(157)
 				p.Match(NexusParserSTRING_LITERAL)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -2035,7 +2265,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 	case NexusParserK_AFTER:
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(144)
+			p.SetState(160)
 			p.Match(NexusParserK_AFTER)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2043,7 +2273,7 @@ func (p *NexusParser) Query_clauses() (localctx IQuery_clausesContext) {
 			}
 		}
 		{
-			p.SetState(145)
+			p.SetState(161)
 			p.Match(NexusParserSTRING_LITERAL)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2270,17 +2500,17 @@ func (s *RemoveStatementContext) Accept(visitor antlr.ParseTreeVisitor) interfac
 
 func (p *NexusParser) RemoveStatement() (localctx IRemoveStatementContext) {
 	localctx = NewRemoveStatementContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 14, NexusParserRULE_removeStatement)
+	p.EnterRule(localctx, 16, NexusParserRULE_removeStatement)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(148)
+		p.SetState(164)
 		p.Match(NexusParserK_REMOVE)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(163)
+	p.SetState(179)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2289,13 +2519,13 @@ func (p *NexusParser) RemoveStatement() (localctx IRemoveStatementContext) {
 	switch p.GetTokenStream().LA(1) {
 	case NexusParserK_SERIES:
 		{
-			p.SetState(149)
+			p.SetState(165)
 			p.Series_specifier()
 		}
 
 	case NexusParserK_FROM:
 		{
-			p.SetState(150)
+			p.SetState(166)
 			p.Match(NexusParserK_FROM)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2303,11 +2533,11 @@ func (p *NexusParser) RemoveStatement() (localctx IRemoveStatementContext) {
 			}
 		}
 		{
-			p.SetState(151)
+			p.SetState(167)
 			p.Metric_name()
 		}
 		{
-			p.SetState(152)
+			p.SetState(168)
 			p.Match(NexusParserK_TAGGED)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2315,10 +2545,10 @@ func (p *NexusParser) RemoveStatement() (localctx IRemoveStatementContext) {
 			}
 		}
 		{
-			p.SetState(153)
+			p.SetState(169)
 			p.Tag_list()
 		}
-		p.SetState(161)
+		p.SetState(177)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -2327,7 +2557,7 @@ func (p *NexusParser) RemoveStatement() (localctx IRemoveStatementContext) {
 		switch p.GetTokenStream().LA(1) {
 		case NexusParserK_AT:
 			{
-				p.SetState(154)
+				p.SetState(170)
 				p.Match(NexusParserK_AT)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -2335,13 +2565,13 @@ func (p *NexusParser) RemoveStatement() (localctx IRemoveStatementContext) {
 				}
 			}
 			{
-				p.SetState(155)
+				p.SetState(171)
 				p.Timestamp()
 			}
 
 		case NexusParserK_FROM:
 			{
-				p.SetState(156)
+				p.SetState(172)
 				p.Match(NexusParserK_FROM)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -2349,11 +2579,11 @@ func (p *NexusParser) RemoveStatement() (localctx IRemoveStatementContext) {
 				}
 			}
 			{
-				p.SetState(157)
+				p.SetState(173)
 				p.Timestamp()
 			}
 			{
-				p.SetState(158)
+				p.SetState(174)
 				p.Match(NexusParserK_TO)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -2361,7 +2591,7 @@ func (p *NexusParser) RemoveStatement() (localctx IRemoveStatementContext) {
 				}
 			}
 			{
-				p.SetState(159)
+				p.SetState(175)
 				p.Timestamp()
 			}
 
@@ -2539,28 +2769,28 @@ func (s *ShowStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface{
 
 func (p *NexusParser) ShowStatement() (localctx IShowStatementContext) {
 	localctx = NewShowStatementContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 16, NexusParserRULE_showStatement)
+	p.EnterRule(localctx, 18, NexusParserRULE_showStatement)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(165)
+		p.SetState(181)
 		p.Match(NexusParserK_SHOW)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(181)
+	p.SetState(197)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 
-	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 20, p.GetParserRuleContext()) {
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 21, p.GetParserRuleContext()) {
 	case 1:
 		{
-			p.SetState(166)
+			p.SetState(182)
 			p.Match(NexusParserK_METRICS)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2570,7 +2800,7 @@ func (p *NexusParser) ShowStatement() (localctx IShowStatementContext) {
 
 	case 2:
 		{
-			p.SetState(167)
+			p.SetState(183)
 			p.Match(NexusParserK_TAG)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2578,7 +2808,7 @@ func (p *NexusParser) ShowStatement() (localctx IShowStatementContext) {
 			}
 		}
 		{
-			p.SetState(168)
+			p.SetState(184)
 			p.Match(NexusParserK_KEYS)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2586,7 +2816,7 @@ func (p *NexusParser) ShowStatement() (localctx IShowStatementContext) {
 			}
 		}
 		{
-			p.SetState(169)
+			p.SetState(185)
 			p.Match(NexusParserK_FROM)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2594,13 +2824,13 @@ func (p *NexusParser) ShowStatement() (localctx IShowStatementContext) {
 			}
 		}
 		{
-			p.SetState(170)
+			p.SetState(186)
 			p.Metric_name()
 		}
 
 	case 3:
 		{
-			p.SetState(171)
+			p.SetState(187)
 			p.Match(NexusParserK_TAG)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2608,14 +2838,14 @@ func (p *NexusParser) ShowStatement() (localctx IShowStatementContext) {
 			}
 		}
 		{
-			p.SetState(172)
+			p.SetState(188)
 			p.Match(NexusParserK_VALUES)
 			if p.HasError() {
 				// Recognition error - abort rule
 				goto errorExit
 			}
 		}
-		p.SetState(175)
+		p.SetState(191)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -2624,7 +2854,7 @@ func (p *NexusParser) ShowStatement() (localctx IShowStatementContext) {
 
 		if _la == NexusParserK_FROM {
 			{
-				p.SetState(173)
+				p.SetState(189)
 				p.Match(NexusParserK_FROM)
 				if p.HasError() {
 					// Recognition error - abort rule
@@ -2632,13 +2862,13 @@ func (p *NexusParser) ShowStatement() (localctx IShowStatementContext) {
 				}
 			}
 			{
-				p.SetState(174)
+				p.SetState(190)
 				p.Metric_name()
 			}
 
 		}
 		{
-			p.SetState(177)
+			p.SetState(193)
 			p.Match(NexusParserK_WITH)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2646,7 +2876,7 @@ func (p *NexusParser) ShowStatement() (localctx IShowStatementContext) {
 			}
 		}
 		{
-			p.SetState(178)
+			p.SetState(194)
 			p.Match(NexusParserK_KEY)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2654,7 +2884,7 @@ func (p *NexusParser) ShowStatement() (localctx IShowStatementContext) {
 			}
 		}
 		{
-			p.SetState(179)
+			p.SetState(195)
 			p.Match(NexusParserT__3)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2662,7 +2892,7 @@ func (p *NexusParser) ShowStatement() (localctx IShowStatementContext) {
 			}
 		}
 		{
-			p.SetState(180)
+			p.SetState(196)
 			p.Tag_value()
 		}
 
@@ -2780,31 +3010,31 @@ func (s *FlushStatementContext) Accept(visitor antlr.ParseTreeVisitor) interface
 
 func (p *NexusParser) FlushStatement() (localctx IFlushStatementContext) {
 	localctx = NewFlushStatementContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 18, NexusParserRULE_flushStatement)
+	p.EnterRule(localctx, 20, NexusParserRULE_flushStatement)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(183)
+		p.SetState(199)
 		p.Match(NexusParserK_FLUSH)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(185)
+	p.SetState(201)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 	_la = p.GetTokenStream().LA(1)
 
-	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&7696581394432) != 0 {
+	if (int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&30786325577728) != 0 {
 		{
-			p.SetState(184)
+			p.SetState(200)
 			_la = p.GetTokenStream().LA(1)
 
-			if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&7696581394432) != 0) {
+			if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&30786325577728) != 0) {
 				p.GetErrorHandler().RecoverInline(p)
 			} else {
 				p.GetErrorHandler().ReportMatch(p)
@@ -2947,15 +3177,15 @@ func (s *Aggregation_spec_listContext) Accept(visitor antlr.ParseTreeVisitor) in
 
 func (p *NexusParser) Aggregation_spec_list() (localctx IAggregation_spec_listContext) {
 	localctx = NewAggregation_spec_listContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 20, NexusParserRULE_aggregation_spec_list)
+	p.EnterRule(localctx, 22, NexusParserRULE_aggregation_spec_list)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(187)
+		p.SetState(203)
 		p.Aggregation_spec()
 	}
-	p.SetState(192)
+	p.SetState(208)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -2964,7 +3194,7 @@ func (p *NexusParser) Aggregation_spec_list() (localctx IAggregation_spec_listCo
 
 	for _la == NexusParserT__4 {
 		{
-			p.SetState(188)
+			p.SetState(204)
 			p.Match(NexusParserT__4)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -2972,11 +3202,11 @@ func (p *NexusParser) Aggregation_spec_list() (localctx IAggregation_spec_listCo
 			}
 		}
 		{
-			p.SetState(189)
+			p.SetState(205)
 			p.Aggregation_spec()
 		}
 
-		p.SetState(194)
+		p.SetState(210)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -3089,12 +3319,12 @@ func (s *Aggregation_specContext) Accept(visitor antlr.ParseTreeVisitor) interfa
 
 func (p *NexusParser) Aggregation_spec() (localctx IAggregation_specContext) {
 	localctx = NewAggregation_specContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 22, NexusParserRULE_aggregation_spec)
+	p.EnterRule(localctx, 24, NexusParserRULE_aggregation_spec)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(195)
+		p.SetState(211)
 		p.Match(NexusParserIDENTIFIER)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3102,7 +3332,7 @@ func (p *NexusParser) Aggregation_spec() (localctx IAggregation_specContext) {
 		}
 	}
 	{
-		p.SetState(196)
+		p.SetState(212)
 		p.Match(NexusParserT__1)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3110,7 +3340,7 @@ func (p *NexusParser) Aggregation_spec() (localctx IAggregation_specContext) {
 		}
 	}
 	{
-		p.SetState(197)
+		p.SetState(213)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == NexusParserT__5 || _la == NexusParserIDENTIFIER) {
@@ -3121,14 +3351,14 @@ func (p *NexusParser) Aggregation_spec() (localctx IAggregation_specContext) {
 		}
 	}
 	{
-		p.SetState(198)
+		p.SetState(214)
 		p.Match(NexusParserT__2)
 		if p.HasError() {
 			// Recognition error - abort rule
 			goto errorExit
 		}
 	}
-	p.SetState(201)
+	p.SetState(217)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -3137,7 +3367,7 @@ func (p *NexusParser) Aggregation_spec() (localctx IAggregation_specContext) {
 
 	if _la == NexusParserK_AS {
 		{
-			p.SetState(199)
+			p.SetState(215)
 			p.Match(NexusParserK_AS)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3145,7 +3375,7 @@ func (p *NexusParser) Aggregation_spec() (localctx IAggregation_specContext) {
 			}
 		}
 		{
-			p.SetState(200)
+			p.SetState(216)
 			p.Match(NexusParserIDENTIFIER)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3289,12 +3519,12 @@ func (s *Series_specifierContext) Accept(visitor antlr.ParseTreeVisitor) interfa
 
 func (p *NexusParser) Series_specifier() (localctx ISeries_specifierContext) {
 	localctx = NewSeries_specifierContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 24, NexusParserRULE_series_specifier)
+	p.EnterRule(localctx, 26, NexusParserRULE_series_specifier)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(203)
+		p.SetState(219)
 		p.Match(NexusParserK_SERIES)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3302,10 +3532,10 @@ func (p *NexusParser) Series_specifier() (localctx ISeries_specifierContext) {
 		}
 	}
 	{
-		p.SetState(204)
+		p.SetState(220)
 		p.Metric_name()
 	}
-	p.SetState(207)
+	p.SetState(223)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -3314,7 +3544,7 @@ func (p *NexusParser) Series_specifier() (localctx ISeries_specifierContext) {
 
 	if _la == NexusParserK_TAGGED {
 		{
-			p.SetState(205)
+			p.SetState(221)
 			p.Match(NexusParserK_TAGGED)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3322,7 +3552,7 @@ func (p *NexusParser) Series_specifier() (localctx ISeries_specifierContext) {
 			}
 		}
 		{
-			p.SetState(206)
+			p.SetState(222)
 			p.Tag_list()
 		}
 
@@ -3428,12 +3658,12 @@ func (s *Metric_nameContext) Accept(visitor antlr.ParseTreeVisitor) interface{} 
 
 func (p *NexusParser) Metric_name() (localctx IMetric_nameContext) {
 	localctx = NewMetric_nameContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 26, NexusParserRULE_metric_name)
+	p.EnterRule(localctx, 28, NexusParserRULE_metric_name)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(209)
+		p.SetState(225)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == NexusParserIDENTIFIER || _la == NexusParserSTRING_LITERAL) {
@@ -3577,12 +3807,12 @@ func (s *Tag_listContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *NexusParser) Tag_list() (localctx ITag_listContext) {
 	localctx = NewTag_listContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 28, NexusParserRULE_tag_list)
+	p.EnterRule(localctx, 30, NexusParserRULE_tag_list)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(211)
+		p.SetState(227)
 		p.Match(NexusParserT__1)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3590,10 +3820,10 @@ func (p *NexusParser) Tag_list() (localctx ITag_listContext) {
 		}
 	}
 	{
-		p.SetState(212)
+		p.SetState(228)
 		p.Tag_assignment()
 	}
-	p.SetState(217)
+	p.SetState(233)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -3602,7 +3832,7 @@ func (p *NexusParser) Tag_list() (localctx ITag_listContext) {
 
 	for _la == NexusParserT__4 {
 		{
-			p.SetState(213)
+			p.SetState(229)
 			p.Match(NexusParserT__4)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -3610,11 +3840,11 @@ func (p *NexusParser) Tag_list() (localctx ITag_listContext) {
 			}
 		}
 		{
-			p.SetState(214)
+			p.SetState(230)
 			p.Tag_assignment()
 		}
 
-		p.SetState(219)
+		p.SetState(235)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -3622,7 +3852,7 @@ func (p *NexusParser) Tag_list() (localctx ITag_listContext) {
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(220)
+		p.SetState(236)
 		p.Match(NexusParserT__2)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3747,12 +3977,12 @@ func (s *Tag_assignmentContext) Accept(visitor antlr.ParseTreeVisitor) interface
 
 func (p *NexusParser) Tag_assignment() (localctx ITag_assignmentContext) {
 	localctx = NewTag_assignmentContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 30, NexusParserRULE_tag_assignment)
+	p.EnterRule(localctx, 32, NexusParserRULE_tag_assignment)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(222)
+		p.SetState(238)
 		_la = p.GetTokenStream().LA(1)
 
 		if !(_la == NexusParserIDENTIFIER || _la == NexusParserSTRING_LITERAL) {
@@ -3763,7 +3993,7 @@ func (p *NexusParser) Tag_assignment() (localctx ITag_assignmentContext) {
 		}
 	}
 	{
-		p.SetState(223)
+		p.SetState(239)
 		p.Match(NexusParserT__3)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -3771,7 +4001,7 @@ func (p *NexusParser) Tag_assignment() (localctx ITag_assignmentContext) {
 		}
 	}
 	{
-		p.SetState(224)
+		p.SetState(240)
 		p.Tag_value()
 	}
 
@@ -3870,10 +4100,10 @@ func (s *Tag_valueContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *NexusParser) Tag_value() (localctx ITag_valueContext) {
 	localctx = NewTag_valueContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 32, NexusParserRULE_tag_value)
+	p.EnterRule(localctx, 34, NexusParserRULE_tag_value)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(226)
+		p.SetState(242)
 		p.Match(NexusParserSTRING_LITERAL)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4014,12 +4244,12 @@ func (s *Field_listContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *NexusParser) Field_list() (localctx IField_listContext) {
 	localctx = NewField_listContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 34, NexusParserRULE_field_list)
+	p.EnterRule(localctx, 36, NexusParserRULE_field_list)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(228)
+		p.SetState(244)
 		p.Match(NexusParserT__1)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4027,10 +4257,10 @@ func (p *NexusParser) Field_list() (localctx IField_listContext) {
 		}
 	}
 	{
-		p.SetState(229)
+		p.SetState(245)
 		p.Field_assignment()
 	}
-	p.SetState(234)
+	p.SetState(250)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
@@ -4039,7 +4269,7 @@ func (p *NexusParser) Field_list() (localctx IField_listContext) {
 
 	for _la == NexusParserT__4 {
 		{
-			p.SetState(230)
+			p.SetState(246)
 			p.Match(NexusParserT__4)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4047,11 +4277,11 @@ func (p *NexusParser) Field_list() (localctx IField_listContext) {
 			}
 		}
 		{
-			p.SetState(231)
+			p.SetState(247)
 			p.Field_assignment()
 		}
 
-		p.SetState(236)
+		p.SetState(252)
 		p.GetErrorHandler().Sync(p)
 		if p.HasError() {
 			goto errorExit
@@ -4059,7 +4289,7 @@ func (p *NexusParser) Field_list() (localctx IField_listContext) {
 		_la = p.GetTokenStream().LA(1)
 	}
 	{
-		p.SetState(237)
+		p.SetState(253)
 		p.Match(NexusParserT__2)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4179,10 +4409,10 @@ func (s *Field_assignmentContext) Accept(visitor antlr.ParseTreeVisitor) interfa
 
 func (p *NexusParser) Field_assignment() (localctx IField_assignmentContext) {
 	localctx = NewField_assignmentContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 36, NexusParserRULE_field_assignment)
+	p.EnterRule(localctx, 38, NexusParserRULE_field_assignment)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(239)
+		p.SetState(255)
 		p.Match(NexusParserIDENTIFIER)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4190,7 +4420,7 @@ func (p *NexusParser) Field_assignment() (localctx IField_assignmentContext) {
 		}
 	}
 	{
-		p.SetState(240)
+		p.SetState(256)
 		p.Match(NexusParserT__3)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4198,7 +4428,7 @@ func (p *NexusParser) Field_assignment() (localctx IField_assignmentContext) {
 		}
 	}
 	{
-		p.SetState(241)
+		p.SetState(257)
 		p.Literal_value()
 	}
 
@@ -4463,21 +4693,21 @@ func (s *TimestampNowRelativeContext) Accept(visitor antlr.ParseTreeVisitor) int
 
 func (p *NexusParser) Timestamp() (localctx ITimestampContext) {
 	localctx = NewTimestampContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 38, NexusParserRULE_timestamp)
+	p.EnterRule(localctx, 40, NexusParserRULE_timestamp)
 	var _la int
 
-	p.SetState(256)
+	p.SetState(272)
 	p.GetErrorHandler().Sync(p)
 	if p.HasError() {
 		goto errorExit
 	}
 
-	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 27, p.GetParserRuleContext()) {
+	switch p.GetInterpreter().AdaptivePredict(p.BaseParser, p.GetTokenStream(), 28, p.GetParserRuleContext()) {
 	case 1:
 		localctx = NewTimestampLiteralContext(p, localctx)
 		p.EnterOuterAlt(localctx, 1)
 		{
-			p.SetState(243)
+			p.SetState(259)
 			p.Match(NexusParserNUMBER)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4489,7 +4719,7 @@ func (p *NexusParser) Timestamp() (localctx ITimestampContext) {
 		localctx = NewTimestampNowContext(p, localctx)
 		p.EnterOuterAlt(localctx, 2)
 		{
-			p.SetState(244)
+			p.SetState(260)
 			p.Match(NexusParserK_NOW)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4497,7 +4727,7 @@ func (p *NexusParser) Timestamp() (localctx ITimestampContext) {
 			}
 		}
 		{
-			p.SetState(245)
+			p.SetState(261)
 			p.Match(NexusParserT__1)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4505,7 +4735,7 @@ func (p *NexusParser) Timestamp() (localctx ITimestampContext) {
 			}
 		}
 		{
-			p.SetState(246)
+			p.SetState(262)
 			p.Match(NexusParserT__2)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4517,7 +4747,7 @@ func (p *NexusParser) Timestamp() (localctx ITimestampContext) {
 		localctx = NewTimestampNowRelativeContext(p, localctx)
 		p.EnterOuterAlt(localctx, 3)
 		{
-			p.SetState(247)
+			p.SetState(263)
 			p.Match(NexusParserK_NOW)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4525,7 +4755,7 @@ func (p *NexusParser) Timestamp() (localctx ITimestampContext) {
 			}
 		}
 		{
-			p.SetState(248)
+			p.SetState(264)
 			p.Match(NexusParserT__1)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4533,7 +4763,7 @@ func (p *NexusParser) Timestamp() (localctx ITimestampContext) {
 			}
 		}
 		{
-			p.SetState(249)
+			p.SetState(265)
 			_la = p.GetTokenStream().LA(1)
 
 			if !(_la == NexusParserPLUS || _la == NexusParserMINUS) {
@@ -4544,7 +4774,7 @@ func (p *NexusParser) Timestamp() (localctx ITimestampContext) {
 			}
 		}
 		{
-			p.SetState(250)
+			p.SetState(266)
 			p.Match(NexusParserDURATION_LITERAL)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4552,7 +4782,7 @@ func (p *NexusParser) Timestamp() (localctx ITimestampContext) {
 			}
 		}
 		{
-			p.SetState(251)
+			p.SetState(267)
 			p.Match(NexusParserT__2)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4564,7 +4794,7 @@ func (p *NexusParser) Timestamp() (localctx ITimestampContext) {
 		localctx = NewTimestampDateTimeContext(p, localctx)
 		p.EnterOuterAlt(localctx, 4)
 		{
-			p.SetState(252)
+			p.SetState(268)
 			p.Match(NexusParserK_DT)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4572,7 +4802,7 @@ func (p *NexusParser) Timestamp() (localctx ITimestampContext) {
 			}
 		}
 		{
-			p.SetState(253)
+			p.SetState(269)
 			p.Match(NexusParserT__1)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4580,7 +4810,7 @@ func (p *NexusParser) Timestamp() (localctx ITimestampContext) {
 			}
 		}
 		{
-			p.SetState(254)
+			p.SetState(270)
 			p.Match(NexusParserSTRING_LITERAL)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4588,7 +4818,7 @@ func (p *NexusParser) Timestamp() (localctx ITimestampContext) {
 			}
 		}
 		{
-			p.SetState(255)
+			p.SetState(271)
 			p.Match(NexusParserT__2)
 			if p.HasError() {
 				// Recognition error - abort rule
@@ -4695,10 +4925,10 @@ func (s *DurationContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *NexusParser) Duration() (localctx IDurationContext) {
 	localctx = NewDurationContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 40, NexusParserRULE_duration)
+	p.EnterRule(localctx, 42, NexusParserRULE_duration)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(258)
+		p.SetState(274)
 		p.Match(NexusParserDURATION_LITERAL)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4801,10 +5031,10 @@ func (s *ValueContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
 
 func (p *NexusParser) Value() (localctx IValueContext) {
 	localctx = NewValueContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 42, NexusParserRULE_value)
+	p.EnterRule(localctx, 44, NexusParserRULE_value)
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(260)
+		p.SetState(276)
 		p.Match(NexusParserNUMBER)
 		if p.HasError() {
 			// Recognition error - abort rule
@@ -4927,15 +5157,477 @@ func (s *Literal_valueContext) Accept(visitor antlr.ParseTreeVisitor) interface{
 
 func (p *NexusParser) Literal_value() (localctx ILiteral_valueContext) {
 	localctx = NewLiteral_valueContext(p, p.GetParserRuleContext(), p.GetState())
-	p.EnterRule(localctx, 44, NexusParserRULE_literal_value)
+	p.EnterRule(localctx, 46, NexusParserRULE_literal_value)
 	var _la int
 
 	p.EnterOuterAlt(localctx, 1)
 	{
-		p.SetState(262)
+		p.SetState(278)
 		_la = p.GetTokenStream().LA(1)
 
-		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&22518479173189632) != 0) {
+		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&90073916692758528) != 0) {
+			p.GetErrorHandler().RecoverInline(p)
+		} else {
+			p.GetErrorHandler().ReportMatch(p)
+			p.Consume()
+		}
+	}
+
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
+	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
+}
+
+// IOption_listContext is an interface to support dynamic dispatch.
+type IOption_listContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// Getter signatures
+	AllOption_assignment() []IOption_assignmentContext
+	Option_assignment(i int) IOption_assignmentContext
+
+	// IsOption_listContext differentiates from other interfaces.
+	IsOption_listContext()
+}
+
+type Option_listContext struct {
+	antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyOption_listContext() *Option_listContext {
+	var p = new(Option_listContext)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = NexusParserRULE_option_list
+	return p
+}
+
+func InitEmptyOption_listContext(p *Option_listContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = NexusParserRULE_option_list
+}
+
+func (*Option_listContext) IsOption_listContext() {}
+
+func NewOption_listContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *Option_listContext {
+	var p = new(Option_listContext)
+
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = NexusParserRULE_option_list
+
+	return p
+}
+
+func (s *Option_listContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *Option_listContext) AllOption_assignment() []IOption_assignmentContext {
+	children := s.GetChildren()
+	len := 0
+	for _, ctx := range children {
+		if _, ok := ctx.(IOption_assignmentContext); ok {
+			len++
+		}
+	}
+
+	tst := make([]IOption_assignmentContext, len)
+	i := 0
+	for _, ctx := range children {
+		if t, ok := ctx.(IOption_assignmentContext); ok {
+			tst[i] = t.(IOption_assignmentContext)
+			i++
+		}
+	}
+
+	return tst
+}
+
+func (s *Option_listContext) Option_assignment(i int) IOption_assignmentContext {
+	var t antlr.RuleContext
+	j := 0
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IOption_assignmentContext); ok {
+			if j == i {
+				t = ctx.(antlr.RuleContext)
+				break
+			}
+			j++
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IOption_assignmentContext)
+}
+
+func (s *Option_listContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Option_listContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *Option_listContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NexusListener); ok {
+		listenerT.EnterOption_list(s)
+	}
+}
+
+func (s *Option_listContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NexusListener); ok {
+		listenerT.ExitOption_list(s)
+	}
+}
+
+func (s *Option_listContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case NexusVisitor:
+		return t.VisitOption_list(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *NexusParser) Option_list() (localctx IOption_listContext) {
+	localctx = NewOption_listContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 48, NexusParserRULE_option_list)
+	var _la int
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(280)
+		p.Match(NexusParserT__1)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	{
+		p.SetState(281)
+		p.Option_assignment()
+	}
+	p.SetState(286)
+	p.GetErrorHandler().Sync(p)
+	if p.HasError() {
+		goto errorExit
+	}
+	_la = p.GetTokenStream().LA(1)
+
+	for _la == NexusParserT__4 {
+		{
+			p.SetState(282)
+			p.Match(NexusParserT__4)
+			if p.HasError() {
+				// Recognition error - abort rule
+				goto errorExit
+			}
+		}
+		{
+			p.SetState(283)
+			p.Option_assignment()
+		}
+
+		p.SetState(288)
+		p.GetErrorHandler().Sync(p)
+		if p.HasError() {
+			goto errorExit
+		}
+		_la = p.GetTokenStream().LA(1)
+	}
+	{
+		p.SetState(289)
+		p.Match(NexusParserT__2)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
+	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
+}
+
+// IOption_assignmentContext is an interface to support dynamic dispatch.
+type IOption_assignmentContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// Getter signatures
+	Option_value() IOption_valueContext
+	IDENTIFIER() antlr.TerminalNode
+	STRING_LITERAL() antlr.TerminalNode
+
+	// IsOption_assignmentContext differentiates from other interfaces.
+	IsOption_assignmentContext()
+}
+
+type Option_assignmentContext struct {
+	antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyOption_assignmentContext() *Option_assignmentContext {
+	var p = new(Option_assignmentContext)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = NexusParserRULE_option_assignment
+	return p
+}
+
+func InitEmptyOption_assignmentContext(p *Option_assignmentContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = NexusParserRULE_option_assignment
+}
+
+func (*Option_assignmentContext) IsOption_assignmentContext() {}
+
+func NewOption_assignmentContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *Option_assignmentContext {
+	var p = new(Option_assignmentContext)
+
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = NexusParserRULE_option_assignment
+
+	return p
+}
+
+func (s *Option_assignmentContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *Option_assignmentContext) Option_value() IOption_valueContext {
+	var t antlr.RuleContext
+	for _, ctx := range s.GetChildren() {
+		if _, ok := ctx.(IOption_valueContext); ok {
+			t = ctx.(antlr.RuleContext)
+			break
+		}
+	}
+
+	if t == nil {
+		return nil
+	}
+
+	return t.(IOption_valueContext)
+}
+
+func (s *Option_assignmentContext) IDENTIFIER() antlr.TerminalNode {
+	return s.GetToken(NexusParserIDENTIFIER, 0)
+}
+
+func (s *Option_assignmentContext) STRING_LITERAL() antlr.TerminalNode {
+	return s.GetToken(NexusParserSTRING_LITERAL, 0)
+}
+
+func (s *Option_assignmentContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Option_assignmentContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *Option_assignmentContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NexusListener); ok {
+		listenerT.EnterOption_assignment(s)
+	}
+}
+
+func (s *Option_assignmentContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NexusListener); ok {
+		listenerT.ExitOption_assignment(s)
+	}
+}
+
+func (s *Option_assignmentContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case NexusVisitor:
+		return t.VisitOption_assignment(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *NexusParser) Option_assignment() (localctx IOption_assignmentContext) {
+	localctx = NewOption_assignmentContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 50, NexusParserRULE_option_assignment)
+	var _la int
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(291)
+		_la = p.GetTokenStream().LA(1)
+
+		if !(_la == NexusParserIDENTIFIER || _la == NexusParserSTRING_LITERAL) {
+			p.GetErrorHandler().RecoverInline(p)
+		} else {
+			p.GetErrorHandler().ReportMatch(p)
+			p.Consume()
+		}
+	}
+	{
+		p.SetState(292)
+		p.Match(NexusParserT__3)
+		if p.HasError() {
+			// Recognition error - abort rule
+			goto errorExit
+		}
+	}
+	{
+		p.SetState(293)
+		p.Option_value()
+	}
+
+errorExit:
+	if p.HasError() {
+		v := p.GetError()
+		localctx.SetException(v)
+		p.GetErrorHandler().ReportError(p, v)
+		p.GetErrorHandler().Recover(p, v)
+		p.SetError(nil)
+	}
+	p.ExitRule()
+	return localctx
+	goto errorExit // Trick to prevent compiler error if the label is not used
+}
+
+// IOption_valueContext is an interface to support dynamic dispatch.
+type IOption_valueContext interface {
+	antlr.ParserRuleContext
+
+	// GetParser returns the parser.
+	GetParser() antlr.Parser
+
+	// Getter signatures
+	DURATION_LITERAL() antlr.TerminalNode
+	NUMBER() antlr.TerminalNode
+	STRING_LITERAL() antlr.TerminalNode
+	K_TRUE() antlr.TerminalNode
+	K_FALSE() antlr.TerminalNode
+
+	// IsOption_valueContext differentiates from other interfaces.
+	IsOption_valueContext()
+}
+
+type Option_valueContext struct {
+	antlr.BaseParserRuleContext
+	parser antlr.Parser
+}
+
+func NewEmptyOption_valueContext() *Option_valueContext {
+	var p = new(Option_valueContext)
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = NexusParserRULE_option_value
+	return p
+}
+
+func InitEmptyOption_valueContext(p *Option_valueContext) {
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, nil, -1)
+	p.RuleIndex = NexusParserRULE_option_value
+}
+
+func (*Option_valueContext) IsOption_valueContext() {}
+
+func NewOption_valueContext(parser antlr.Parser, parent antlr.ParserRuleContext, invokingState int) *Option_valueContext {
+	var p = new(Option_valueContext)
+
+	antlr.InitBaseParserRuleContext(&p.BaseParserRuleContext, parent, invokingState)
+
+	p.parser = parser
+	p.RuleIndex = NexusParserRULE_option_value
+
+	return p
+}
+
+func (s *Option_valueContext) GetParser() antlr.Parser { return s.parser }
+
+func (s *Option_valueContext) DURATION_LITERAL() antlr.TerminalNode {
+	return s.GetToken(NexusParserDURATION_LITERAL, 0)
+}
+
+func (s *Option_valueContext) NUMBER() antlr.TerminalNode {
+	return s.GetToken(NexusParserNUMBER, 0)
+}
+
+func (s *Option_valueContext) STRING_LITERAL() antlr.TerminalNode {
+	return s.GetToken(NexusParserSTRING_LITERAL, 0)
+}
+
+func (s *Option_valueContext) K_TRUE() antlr.TerminalNode {
+	return s.GetToken(NexusParserK_TRUE, 0)
+}
+
+func (s *Option_valueContext) K_FALSE() antlr.TerminalNode {
+	return s.GetToken(NexusParserK_FALSE, 0)
+}
+
+func (s *Option_valueContext) GetRuleContext() antlr.RuleContext {
+	return s
+}
+
+func (s *Option_valueContext) ToStringTree(ruleNames []string, recog antlr.Recognizer) string {
+	return antlr.TreesStringTree(s, ruleNames, recog)
+}
+
+func (s *Option_valueContext) EnterRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NexusListener); ok {
+		listenerT.EnterOption_value(s)
+	}
+}
+
+func (s *Option_valueContext) ExitRule(listener antlr.ParseTreeListener) {
+	if listenerT, ok := listener.(NexusListener); ok {
+		listenerT.ExitOption_value(s)
+	}
+}
+
+func (s *Option_valueContext) Accept(visitor antlr.ParseTreeVisitor) interface{} {
+	switch t := visitor.(type) {
+	case NexusVisitor:
+		return t.VisitOption_value(s)
+
+	default:
+		return t.VisitChildren(s)
+	}
+}
+
+func (p *NexusParser) Option_value() (localctx IOption_valueContext) {
+	localctx = NewOption_valueContext(p, p.GetParserRuleContext(), p.GetState())
+	p.EnterRule(localctx, 52, NexusParserRULE_option_value)
+	var _la int
+
+	p.EnterOuterAlt(localctx, 1)
+	{
+		p.SetState(295)
+		_la = p.GetTokenStream().LA(1)
+
+		if !((int64(_la) & ^0x3f) == 0 && ((int64(1)<<_la)&99080016435871744) != 0) {
 			p.GetErrorHandler().RecoverInline(p)
 		} else {
 			p.GetErrorHandler().ReportMatch(p)

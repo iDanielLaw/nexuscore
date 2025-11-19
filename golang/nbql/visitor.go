@@ -2,6 +2,7 @@ package nbql
 
 import (
 	"fmt"
+	"regexp"
 	"strconv"
 	"strings"
 	"time"
@@ -41,6 +42,9 @@ func (v *ASTBuilder) Visit(tree antlr.ParseTree) interface{} {
 func (v *ASTBuilder) VisitStatement(ctx *parser.StatementContext) interface{} {
 	if ctx.PushStatement() != nil {
 		return v.Visit(ctx.PushStatement())
+	}
+	if ctx.CreateStatement() != nil {
+		return v.Visit(ctx.CreateStatement())
 	}
 	if ctx.QueryStatement() != nil {
 		return v.Visit(ctx.QueryStatement())
@@ -101,6 +105,26 @@ func (v *ASTBuilder) VisitPushStatement(ctx *parser.PushStatementContext) interf
 		Timestamp: ts,
 		Tags:      tags,
 		Fields:    fields,
+	}
+}
+
+// VisitCreateStatement builds a ConfigStatement from the parse tree.
+func (v *ASTBuilder) VisitCreateStatement(ctx *parser.CreateStatementContext) interface{} {
+	metric := v.visitMetricName(ctx.Metric_name())
+
+	var options map[string]interface{}
+	if ctx.Option_list() != nil {
+		optResult, ok := v.Visit(ctx.Option_list()).(map[string]interface{})
+		if !ok {
+			v.addError(fmt.Errorf("internal error: failed to parse option list"))
+			return nil
+		}
+		options = optResult
+	}
+
+	return &ConfigStatement{
+		Metric:  metric,
+		Options: options,
 	}
 }
 
@@ -349,6 +373,82 @@ func (v *ASTBuilder) VisitField_list(ctx *parser.Field_listContext) interface{} 
 		fields[key] = value
 	}
 	return fields
+}
+
+// VisitOption_list builds a map of options for CONFIG METRICS ... WITH (...)
+func (v *ASTBuilder) VisitOption_list(ctx *parser.Option_listContext) interface{} {
+	opts := make(map[string]interface{})
+	for _, assignCtx := range ctx.AllOption_assignment() {
+		key := ""
+		if assignCtx.IDENTIFIER() != nil {
+			key = assignCtx.IDENTIFIER().GetText()
+		} else {
+			key = v.unquote(assignCtx.STRING_LITERAL().GetText())
+		}
+		val := v.visitOptionValue(assignCtx.Option_value())
+		opts[key] = val
+	}
+	// Ensure retention-period exists; default to "disabled" if not provided.
+	if _, ok := opts["retention-period"]; !ok {
+		opts["retention-period"] = "disabled"
+	} else {
+		// Validate retention-period if present
+		if rp, ok := opts["retention-period"].(string); ok {
+			// allowed units: m h d w mo y
+			// normalize to lower-case and remove surrounding whitespace
+			rp = strings.ToLower(strings.TrimSpace(rp))
+			// duration format: digits + unit
+			matched, _ := regexp.MatchString(`^[0-9]+(m|h|d|w|mo|y)$`, rp)
+			if !matched {
+				v.addError(fmt.Errorf("invalid retention-period format: %s", rp))
+				return nil
+			}
+			// store normalized value
+			opts["retention-period"] = rp
+		} else {
+			v.addError(fmt.Errorf("retention-period must be a duration literal"))
+			return nil
+		}
+	}
+
+	return opts
+}
+
+// visitOptionValue converts an option_value context to an appropriate Go type.
+func (v *ASTBuilder) visitOptionValue(ctx parser.IOption_valueContext) interface{} {
+	if ctx == nil {
+		return nil
+	}
+	if ctx.DURATION_LITERAL() != nil {
+		return ctx.DURATION_LITERAL().GetText()
+	}
+	if ctx.NUMBER() != nil {
+		text := ctx.NUMBER().GetText()
+		if strings.Contains(text, ".") {
+			f, err := strconv.ParseFloat(text, 64)
+			if err != nil {
+				v.addError(fmt.Errorf("invalid float in option value: %s", text))
+				return nil
+			}
+			return f
+		}
+		i, err := strconv.ParseInt(text, 10, 64)
+		if err != nil {
+			v.addError(fmt.Errorf("invalid integer in option value: %s", text))
+			return nil
+		}
+		return i
+	}
+	if ctx.STRING_LITERAL() != nil {
+		return v.unquote(ctx.STRING_LITERAL().GetText())
+	}
+	if ctx.K_TRUE() != nil {
+		return true
+	}
+	if ctx.K_FALSE() != nil {
+		return false
+	}
+	return nil
 }
 
 // visitLiteralValue converts a literal token to its Go type.

@@ -120,3 +120,11 @@ type AggregationSpec struct {
 	Field    string
 	Alias    string // Optional alias for the result column
 }
+
+// ConfigStatement represents a CONFIG METRICS command in NBQL.
+type ConfigStatement struct {
+	Metric  string
+	Options map[string]interface{}
+}
+
+func (s *ConfigStatement) isCommand() {}

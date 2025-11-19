@@ -329,6 +329,32 @@ func TestParser(t *testing.T) {
 		run(t, "flush default", `FLUSH;`, false, &FlushStatement{Type: FlushAll}) // Default is ALL
 	})
 
+	// --- CONFIG Statement Tests ---
+	t.Run("CONFIG", func(t *testing.T) {
+		run(t, "config without options",
+			`CONFIG METRICS cpu;`,
+			false,
+			&ConfigStatement{
+				Metric:  "cpu",
+				Options: nil,
+			},
+		)
+
+		run(t, "config with options",
+			`CONFIG METRICS "my.metric" WITH (retention-period="30d", shards=3, compression="lz4", enabled=true);`,
+			false,
+			&ConfigStatement{
+				Metric: "my.metric",
+				Options: map[string]interface{}{
+					"retention-period": "30d",
+					"shards":           int64(3),
+					"compression":      "lz4",
+					"enabled":          true,
+				},
+			},
+		)
+	})
+
 	// --- SNAPSHOT Statement Tests ---
 	t.Run("SNAPSHOT", func(t *testing.T) {
 		run(t, "simple snapshot",

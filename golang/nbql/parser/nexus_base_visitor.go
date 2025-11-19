@@ -23,6 +23,10 @@ func (v *BaseNexusVisitor) VisitPushStatement(ctx *PushStatementContext) interfa
 	return v.VisitChildren(ctx)
 }
 
+func (v *BaseNexusVisitor) VisitCreateStatement(ctx *CreateStatementContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
 func (v *BaseNexusVisitor) VisitQueryStatement(ctx *QueryStatementContext) interface{} {
 	return v.VisitChildren(ctx)
 }
@@ -108,5 +112,17 @@ func (v *BaseNexusVisitor) VisitValue(ctx *ValueContext) interface{} {
 }
 
 func (v *BaseNexusVisitor) VisitLiteral_value(ctx *Literal_valueContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseNexusVisitor) VisitOption_list(ctx *Option_listContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseNexusVisitor) VisitOption_assignment(ctx *Option_assignmentContext) interface{} {
+	return v.VisitChildren(ctx)
+}
+
+func (v *BaseNexusVisitor) VisitOption_value(ctx *Option_valueContext) interface{} {
 	return v.VisitChildren(ctx)
 }

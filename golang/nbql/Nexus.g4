@@ -3,7 +3,7 @@ grammar Nexus;
 // --- Parser Rules ---
 
 // Entry point: a single statement ending with EOF
-statement: (pushStatement | queryStatement | removeStatement | showStatement | flushStatement | snapshotStatement | restoreStatement) ';'? EOF;
+statement: (pushStatement | createStatement | queryStatement | removeStatement | showStatement | flushStatement | snapshotStatement | restoreStatement) ';'? EOF;
 
 // --- Command Structures ---
 
@@ -12,6 +12,8 @@ snapshotStatement: K_SNAPSHOT;
 restoreStatement: K_RESTORE K_FROM STRING_LITERAL (K_WITH K_OVERWRITE)?;
 
 pushStatement: K_PUSH metric_name (K_TIME timestamp)? (K_TAGGED tag_list)? K_SET field_list;
+
+createStatement: K_CONFIG K_METRICS metric_name (K_WITH option_list)?;
 
 queryStatement: K_QUERY metric_name time_range (K_TAGGED tag_list)? query_clauses?;
 
@@ -73,11 +75,18 @@ literal_value:
     | K_FALSE
     | K_NULL;
 
+// Options for create statement: key=value pairs (e.g., retention="30d")
+option_list: '(' option_assignment (',' option_assignment)* ')';
+option_assignment: (IDENTIFIER | STRING_LITERAL) '=' option_value;
+option_value: DURATION_LITERAL | NUMBER | STRING_LITERAL | K_TRUE | K_FALSE;
+
 // --- Lexer Rules (Tokens) ---
 
 K_OVERWRITE: O V E R W R I T E;
 K_RESTORE: R E S T O R E;
 K_SNAPSHOT: S N A P S H O T;
+K_CREATE: C R E A T E;
+K_CONFIG: C O N F I G;
 K_PUSH: P U S H;
 K_QUERY: Q U E R Y;
 K_REMOVE: R E M O V E;
@@ -122,7 +131,7 @@ K_RELATIVE: R E L A T I V E;
 PLUS: '+';
 MINUS: '-';
 
-DURATION_LITERAL: [0-9]+[smhdwy];
+DURATION_LITERAL: [0-9]+('mo'|[smhdwy]);
 NUMBER: [0-9]+ ('.' [0-9]+)?;
 IDENTIFIER: [a-zA-Z_] [a-zA-Z0-9_.:-]*;
 STRING_LITERAL:

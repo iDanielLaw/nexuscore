@@ -19,6 +19,9 @@ type NexusVisitor interface {
 	// Visit a parse tree produced by NexusParser#pushStatement.
 	VisitPushStatement(ctx *PushStatementContext) interface{}
 
+	// Visit a parse tree produced by NexusParser#createStatement.
+	VisitCreateStatement(ctx *CreateStatementContext) interface{}
+
 	// Visit a parse tree produced by NexusParser#queryStatement.
 	VisitQueryStatement(ctx *QueryStatementContext) interface{}
 
@@ -84,4 +87,13 @@ type NexusVisitor interface {
 
 	// Visit a parse tree produced by NexusParser#literal_value.
 	VisitLiteral_value(ctx *Literal_valueContext) interface{}
+
+	// Visit a parse tree produced by NexusParser#option_list.
+	VisitOption_list(ctx *Option_listContext) interface{}
+
+	// Visit a parse tree produced by NexusParser#option_assignment.
+	VisitOption_assignment(ctx *Option_assignmentContext) interface{}
+
+	// Visit a parse tree produced by NexusParser#option_value.
+	VisitOption_value(ctx *Option_valueContext) interface{}
 }
