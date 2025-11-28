@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package tsdb;
 
-import "google/protobuf/struct.proto"; // Import the Struct message type
 
 // option go_package = "github.com/INLOpen/nexusbase/api/tsdb";
 
@@ -48,7 +47,8 @@ message PutRequest {
   string metric = 1;
   map<string, string> tags = 2;
   int64 timestamp = 3;
-  google.protobuf.Struct fields = 4;
+  // Strongly-typed fields to make mapping into engine2 structures easier.
+  Fields fields = 4;
 }
 
 message PutResponse {
@@ -71,7 +71,7 @@ message GetRequest {
 }
 
 message GetResponse {
-  google.protobuf.Struct fields = 1;
+  Fields fields = 1;
 }
 
 // Messages for Delete
@@ -135,7 +135,7 @@ message QueryResult {
 
   // Fields for raw data points (if is_aggregated is false)
   int64 timestamp = 3;
-  google.protobuf.Struct fields = 4;
+  Fields fields = 4;
 
   // Fields for aggregated results (if is_aggregated is true)
   int64 window_start_time = 5;
@@ -192,3 +192,20 @@ message ForceFlushRequest {}
 
 // The response message for ForceFlush.
 message ForceFlushResponse {}
+
+// Fields is a typed representation of point fields used by engine2.
+// It separates numeric, string, boolean and binary fields so generated
+// Go types map cleanly to the engine2 internal representation.
+message Fields {
+  // Numeric fields (float64)
+  map<string, double> numeric = 1;
+
+  // String fields
+  map<string, string> strings = 2;
+
+  // Boolean fields
+  map<string, bool> bools = 3;
+
+  // Arbitrary binary payloads
+  map<string, bytes> binaries = 4;
+}
